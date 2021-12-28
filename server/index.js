@@ -4,11 +4,11 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 // imports the API from the routes/api folder
-const admin = require('./routes/api/admin')
-const client = require('./routes/api/client')
-const commande = require('./routes/api/commande')
-const panier = require('./routes/api/panier')
-const region = require('./routes/api/region')
+const admin = require('./routes/api/admins')
+const client = require('./routes/api/clients')
+const commande = require('./routes/api/commandes')
+const panier = require('./routes/api/paniers')
+const region = require('./routes/api/regions')
 const vins = require('./routes/api/vins')
 
 // initializes the express application
