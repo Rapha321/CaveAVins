@@ -8,17 +8,17 @@ import zoneLivraison from '../images/zone-livraison.jpg'
 
 export default function Acceuil() {
     return (
-        <Container>
+        <Container >
 
             <div className='acceuil' style={{margin: "100px auto"}}>
-                <div style={{width: "60vw", textAlign: "left", marginTop: "20px"}}>
+                <div style={{width: "60vw", textAlign: "left"}}>
                     <h1 style={{width: "40vw", textAlign: "left", marginTop: "20px", marginBottom: "25px"}}>BIENVENUE!!!</h1>
                     <img src={bienvenue} alt="Wine pouring" width="90%" height="40%" style={{textAlign:"left"}}/>
                     <h3 style={{width: "90%", textAlign:"left", marginTop: "35px"}}>
                         À La Cave à Vins, nous privilégions les vins de petites productions de 
                         vignobles de proximité. Aussi, nous avons la chance de mettre la main 
                         sur des produits exclusifs, créés par des vignerons amoureux de notre 
-                        terroir. On se fait dailleurs littéralement remercier par les vignobles 
+                        terroir. On se fait d'ailleurs littéralement remercier par les vignobles 
                         de rendre les produits disponibles en ligne.
                     </h3>
                     
@@ -53,12 +53,14 @@ export default function Acceuil() {
                 <div style={{display: "flex"}}>
                     <div style={{width: "40%", margin: "auto"}}>
                         <h3>On vous remercie de boire local et de votre intérêt envers les 
-                        vignerons du Québec, qui nont pas toujours la reconnaissance quils méritent.
+                        vignerons du Québec, qui n'ont pas toujours la reconnaissance qu'ils méritent.
                         </h3>
                     </div>
                     <div><img src={pouring} alt="Wine pouring" width="350"/> </div>
                 </div>
             </div>
+
+            <br />
 
         </Container>
     )
