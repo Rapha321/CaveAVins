@@ -17,9 +17,12 @@ router.get('/', (req, res) => {
 // @desc Create new vins (public)
 router.post('/', (req, res) => {
   const newVins = new Vins({
+    regionID: req.body.regionID,
     nom: req.body.nom,
     prix: req.body.prix,
-    quantity: req.body.quantity
+    quantity: req.body.quantity,
+    descrVins: req.body.descrVins,
+    imgVins: req.body.imgVins
   })
 
   console.log("newVins", newVins)

@@ -4,11 +4,11 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 // imports the API from the routes/api folder
-const admin = require('./routes/api/admins')
-const client = require('./routes/api/clients')
-const commande = require('./routes/api/commandes')
-const panier = require('./routes/api/paniers')
-const region = require('./routes/api/regions')
+const admins = require('./routes/api/admins')
+const clients = require('./routes/api/clients')
+const commandes = require('./routes/api/commandes')
+const paniers = require('./routes/api/paniers')
+const regions = require('./routes/api/regions')
 const vins = require('./routes/api/vins')
 
 // initializes the express application
@@ -18,7 +18,7 @@ const app = express()
 app.use(cors())
 
 // converts API responses to JSON for easy use
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
@@ -45,11 +45,11 @@ const db = require('./config/keys').mongoURI
 
 
 // creates a route where we can interact with our API
-app.use('/api/admin', admin)
-app.use('/api/client', client)
-app.use('/api/commande', commande)
-app.use('/api/panier', panier)
-app.use('/api/region', region)
+app.use('/api/admins', admins)
+app.use('/api/clients', clients)
+app.use('/api/commandes', commandes)
+app.use('/api/paniers', paniers)
+app.use('/api/regions', regions)
 app.use('/api/vins', vins)
 
 

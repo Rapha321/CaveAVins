@@ -3,11 +3,21 @@ const Schema = mongoose.Schema
 
 const RegionSchema = new Schema({
 
-  nom: {
+  nomRegion: {
     type: String,
-    required: true,
-  }
+    required: true
+  },
+  imgRegion: {
+    type: String,
+    required: true
+  },
+  descrRegion: {
+    type: String,
+    required: true
+  },
 
 })
 
 module.exports = Region = mongoose.model('Region', RegionSchema)
+
+

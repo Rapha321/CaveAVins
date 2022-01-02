@@ -19,9 +19,9 @@ router.post('/', (req, res) => {
   const newClient = new Client({
     nom: req.body.nom,
     prenom: req.body.prenom,
-    adresse: req.body.adresse,
-    typeCarte: req.body.typeCarte,
-    numeroCarte: req.body.numeroCarte,
+    // adresse: req.body.adresse,
+    // typeCarte: req.body.typeCarte,
+    // numeroCarte: req.body.numeroCarte,
     email: req.body.email,
     password: req.body.password
   })

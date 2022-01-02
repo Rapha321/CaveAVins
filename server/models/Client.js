@@ -1,3 +1,5 @@
+const { isEmail } = require('validator');
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -12,23 +14,26 @@ const ClientSchema = new Schema({
   },
   adresse: {
     type: String,
-    required: true,
+    required: false,
   },
   typeCarte: {
     type: String,
-    required: true,
+    required: false,
   },
   numeroCarte: {
     type: String,
-    required: true,
+    required: false,
   },
   email: {
     type: String,
-    required: true,
+    unique: true,
+    lowercase: true,
+    required: [true, 'Veuillez saisir un adresse email'],
+    validate: [isEmail, 'Please enter a valid email']
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Veuillez saisir un mot de passe']
   },
 })
 

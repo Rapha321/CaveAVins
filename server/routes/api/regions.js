@@ -17,13 +17,16 @@ router.get('/', (req, res) => {
 // @desc Create new region (public)
 router.post('/', (req, res) => {
   const newRegion = new Region({
-    nom: req.body.nom
+    nomRegion: req.body.nomRegion,
+    imgRegion: req.body.imgRegion,
+    descrRegion: req.body.descrRegion,
   })
 
   console.log("newRegion", newRegion)
 
   newRegion.save().then(info => res.json(info))
 })
+
 
 // @route DELETE /api/regions
 // @desc Delete region (public)
@@ -40,7 +43,9 @@ router.post('/update/:id', (req, res) => {
     {_id: req.params.id},
     {
       $set: {
-        nom: req.body.nom
+        nomRegion: req.body.nomRegion,
+        imgRegion: req.body.imgRegion,
+        descrRegion: req.body.descrRegion,
       },
     },
     {new: true},
