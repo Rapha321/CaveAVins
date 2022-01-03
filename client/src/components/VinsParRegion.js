@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Router, useNavigate, useParams } from "react-router-dom";
-import { Container } from 'semantic-ui-react';
+import { Router, useNavigate, useParams } from "react-router-dom"
+import { Container } from 'semantic-ui-react'
 
 
     export default function VinsParRegion() {
 
         let {regionID} = useParams();
+        let navigate = useNavigate();
         const [regions1, setRegions1] = useState([]);
         const [vins, setVins] = useState([]);
     
@@ -20,6 +21,11 @@ import { Container } from 'semantic-ui-react';
                 .then(res => res.json())
                 .then(data => setVins(data))
         }, []) 
+
+
+        const afficherVinsIndividuel = (id) => {
+            navigate(`/vinsIndividuel/${id}`)
+        }
 
 
         return (
@@ -44,7 +50,12 @@ import { Container } from 'semantic-ui-react';
                     {vins.map(item => {
                         if (item.regionID === regionID) {
                             return (
-                                <div style={{width: "220px", maxWidth: "220px", marginRight: "15px", marginTop: "10px"}}>
+                                <div onClick={() => afficherVinsIndividuel(item._id)}
+                                     style={{ width: "220px", 
+                                              maxWidth: "220px", 
+                                              marginRight: "15px", 
+                                              marginTop: "10px"
+                                            }}>
                                     <img src={require(`../images/regions/${item.imgVins}`)}
                                         style={{maxHeight: "270px"}} />
                                     <h5>{item.nom}</h5>

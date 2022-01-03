@@ -9,7 +9,7 @@ export default function Header() {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                    Signed in as: <a href="#login">Mark Otto</a>
+                    <span><i class="fas fa-2x fa-cart-arrow-down"></i></span>
                 </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
