@@ -1,56 +1,79 @@
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, Dropdown } from 'react-bootstrap';
+import axios from 'axios'
+import { Button, ButtonGroup, Dropdown, ToastHeader } from 'react-bootstrap';
 import { useBootstrapPrefix } from 'react-bootstrap/esm/ThemeProvider';
 import { Router, useNavigate, useParams } from "react-router-dom"
 import { ButtonContent, Container, Input } from 'semantic-ui-react'
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function VinsIndividuel() {
 
-    let {vinsID} = useParams()
+    let {vinsID, clientID} = useParams()
     let navigate = useNavigate()
     const [vins, setVins] = useState([])
-    const [quantity, setQuantity] = useState(1)
-    const [prix, setPrix] = useState(0)
-    const [prixTotal, setPrixTotal] = useState(0)
+    const [paniers, setPaniers] = useState([]);
 
-    const minusStyle = quantity === 1 ? "none" : "block"
-    const plusStyle = quantity === 4 ? "none" : "block" 
 
     useEffect(() => {
+        let isMounted = true;
         fetch('/api/vins')
             .then(res => res.json())
-            .then(data => setVins(data))
+            .then(data => { if (isMounted){ setVins(data) } })
+
+        return () => {isMounted = false};
     }, []) 
 
-    useEffect(() => {
-        fetch('/api/vins')
-            .then(res => res.json())
-            .then(data => data.map(x => {
-                                            if(x._id === vinsID) { setPrix(x.prix) }
-                                        }))
-    }, [])
+
+    const ajouterPanier = async (e) => {
+        e.preventDefault()
+
+        let vinsExistPanier = false;
+
+        const res = await axios.get('/api/paniers')
+        const data = res.data
+        data.map(x => {
+            if (x.clientID === clientID && x.vinsID === vinsID) {
+                toast.info('🦄 Ce vins existe deja dans votre panier!', {
+                    toastId: 'info1',
+                    position: "top-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                vinsExistPanier = true;
+            }
+        })
+
+        if (!vinsExistPanier) {
+            await axios.post('/api/paniers', {
+                clientID: clientID,
+                vinsID: vinsID
+            })
     
-    useEffect(() => {
-        setPrixTotal(prix * quantity)
-    }, [quantity])
+            getPaniers()
+            navigate(`/panier/${clientID}`)
+        }
 
-    const add = () => {
-        setQuantity(quantity +1)
     }
 
-    const minus = () => {
-        setQuantity(quantity -1)
+    // Read
+    const getPaniers = async () => {
+        const res = await axios.get('/api/paniers')
+        const data = res.data
+        setPaniers(data)
     }
 
-    const afficherPaiement = (id) => {
-        navigate(`/paiementEtape1`)
-    }
 
 
 
     return (
         <Container style={{marginTop: "50px"}}>
+           
             {vins.map(item => {
                 if (item._id === vinsID) {
                     return (
@@ -65,56 +88,17 @@ export default function VinsIndividuel() {
 
                                 <h5 style={{margin: "10px 0"}}>Prix: {item.prix} $ </h5> 
 
-                                <div style={{display: "flex"}}>
-                                    
-                                    <tr>
-                                        <td width="80px">
-                                            <h5 style={{margin: "10px 0"}}>Quantité: </h5>
-                                        </td>
-                                        <td width="30px">
-                                            <span onClick={minus} style={{display: minusStyle}}>
-                                                <i class="fas fa-minus-circle fa-2x"></i>
-                                            </span>
-                                        </td>
-                                        <td width="30px">
-                                            <h5 style={{margin: "0 10px"}}><strong> {quantity} </strong></h5>
-                                        </td>
-                                        <td width="30px">
-                                            <span onClick={add} style={{display: plusStyle}}>
-                                                <i class="fas fa-plus-circle  fa-2x" style={{width: "40px"}}></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    
-                                </div>
-
                                 <br/>
 
                                 <p>{item.descrVins}</p>
 
                                 <br />
 
-                                <Input 
-                                    
-                                    action={{
-                                        onClick: afficherPaiement,
-                                        color: 'teal',
-                                        labelPosition: 'left',
-                                        icon: 'cart',
-                                        content: 'Payer',
-                                    }}
-                                    actionPosition='left'
-                                    placeholder='Search...'
-                                    value={quantity === 1 ? `${item.prix} $` : `${prixTotal} $`}
-                                    style={{margin: "10px 0"}}
-                                />
-
-                                <br />
-
-                                <Button primary style={{margin: "10px 0"}}>
+                                <Button primary 
+                                        onClick={ajouterPanier}
+                                        style={{margin: "10px 0"}}>
                                     <i class="fas fa-cart-plus"></i> Ajouter au panier
                                 </Button>
-
                                 
                             </div>
 
@@ -122,6 +106,11 @@ export default function VinsIndividuel() {
                     )
                 }
             })}
+
+
+
         </Container>
+
+
     )
 }

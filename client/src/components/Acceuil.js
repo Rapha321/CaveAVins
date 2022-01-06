@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Form, FormLabel, InputGroup } from 'react-bootstrap'
+import { Container, Navbar } from 'react-bootstrap'
 import CombineLoginSignup from './CombineLoginSignup'
 import pouring from '../images/pouring.gif'
 import collections from '../images/collections.jpg'
@@ -7,6 +7,8 @@ import bienvenue from '../images/bienvenue.jpg'
 import zoneLivraison from '../images/zone-livraison.jpg'
 
 export default function Acceuil() {
+
+    
     return (
         <Container >
 

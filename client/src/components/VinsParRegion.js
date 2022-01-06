@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react'
 
     export default function VinsParRegion() {
 
-        let {regionID} = useParams();
+        let {regionID, clientID} = useParams();
         let navigate = useNavigate();
         const [regions1, setRegions1] = useState([]);
         const [vins, setVins] = useState([]);
@@ -23,8 +23,8 @@ import { Container } from 'semantic-ui-react'
         }, []) 
 
 
-        const afficherVinsIndividuel = (id) => {
-            navigate(`/vinsIndividuel/${id}`)
+        const afficherVinsIndividuel = (vinsID) => {
+            navigate(`/vinsIndividuel/${vinsID}/${clientID}`)
         }
 
 
@@ -67,5 +67,5 @@ import { Container } from 'semantic-ui-react'
                 </Container>
                 
             </Container>
-    )
+        )
     }

@@ -7,8 +7,6 @@ import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@materia
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 
-
-
 const Login=({handleChange})=>{
 
     const paperStyle={padding :20, width:300, height:390, margin:"0 auto"}
@@ -22,7 +20,6 @@ const Login=({handleChange})=>{
         
         e.preventDefault()
         const {email, password} = e.target
-        
 
         const res = await axios.get('/api/clients')
         const data = res.data
@@ -30,7 +27,7 @@ const Login=({handleChange})=>{
         data.map(user => {
 
             if (user.email == email.value && user.password == password.value) {
-                navigate("/regions")
+                navigate(`/regions/${user._id}`)
             }
                 
         })

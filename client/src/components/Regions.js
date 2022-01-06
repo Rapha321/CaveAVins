@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Container } from "semantic-ui-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Regions() {
 
     const [regions, setRegions] = useState([]);
     let navigate = useNavigate();
+    let {clientID} = useParams()
 
     useEffect(() => {
         fetch('/api/regions')
@@ -15,8 +16,8 @@ export default function Regions() {
     }, []) 
 
 
-    const afficherVins = (id) => {
-        navigate(`/vinsParRegion/${id}`)
+    const afficherVins = (vinsID) => {
+        navigate(`/vinsParRegion/${vinsID}/${clientID}`)
     }
 
         
@@ -43,8 +44,6 @@ export default function Regions() {
 
             </Container>
 
-            <h2>Tous notre vins disponibles:</h2> 
-            <Button success>Magasiner</Button>
         </Container>
     )
 }
