@@ -3,13 +3,14 @@ const Schema = mongoose.Schema
 
 const PanierSchema = new Schema({
 
-  quantity: {
-    type: Number,
-    required: true,
+  clientID: {
+    type: String
   },
-  item: {
-    type: String,
-    required: true,
+  vinsID: {
+    type: String
+  },
+  quantity: {
+    type: Number
   }
 
 })

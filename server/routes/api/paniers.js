@@ -17,11 +17,10 @@ router.get('/', (req, res) => {
 // @desc Create new panier (public)
 router.post('/', (req, res) => {
   const newPanier = new Panier({
-    quantity: req.body.quantity,
-    item: req.body.item,
+    clientID: req.body.clientID,
+    vinsID: req.body.vinsID,
+    quantity: 1
   })
-
-  console.log("newPanier", newPanier)
 
   newPanier.save().then(info => res.json(info))
 })
@@ -41,8 +40,9 @@ router.post('/update/:id', (req, res) => {
     {_id: req.params.id},
     {
       $set: {
-        quantity: req.body.quantity,
-        item: req.body.item
+        clientID: req.body.clientID,
+        vinsID: req.body.vinsID,
+        quantity: req.body.quantity
       },
     },
     {new: true},

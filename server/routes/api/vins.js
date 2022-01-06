@@ -25,8 +25,6 @@ router.post('/', (req, res) => {
     imgVins: req.body.imgVins
   })
 
-  console.log("newVins", newVins)
-
   newVins.save().then(info => res.json(info))
 })
 
