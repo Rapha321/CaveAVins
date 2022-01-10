@@ -49,10 +49,12 @@ router.post('/update/:id', (req, res) => {
         nom: req.body.nom,
         prenom: req.body.prenom,
         adresse: req.body.adresse,
+        appartment: req.body.appartment,
+        ville: req.body.ville,
+        province: req.body.province,
+        codePostal: req.body.codePostal,
         typeCarte: req.body.typeCarte,
-        numeroCarte: req.body.numeroCarte,
-        email: req.body.email,
-        password: req.body.password
+        numeroCarte: req.body.numeroCarte
       },
     },
     {new: true},

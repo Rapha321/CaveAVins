@@ -5,7 +5,6 @@ import { useBootstrapPrefix } from 'react-bootstrap/esm/ThemeProvider';
 import { Router, useNavigate, useParams } from "react-router-dom"
 import { ButtonContent, Container, Input } from 'semantic-ui-react'
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function VinsIndividuel() {
@@ -69,8 +68,6 @@ export default function VinsIndividuel() {
     }
 
 
-
-
     return (
         <Container style={{marginTop: "50px"}}>
            
@@ -107,10 +104,7 @@ export default function VinsIndividuel() {
                 }
             })}
 
-
-
         </Container>
-
 
     )
 }

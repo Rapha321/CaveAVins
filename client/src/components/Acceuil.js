@@ -8,14 +8,14 @@ import zoneLivraison from '../images/zone-livraison.jpg'
 
 export default function Acceuil() {
 
-    
+   
     return (
         <Container >
 
             <div className='acceuil' style={{margin: "100px auto"}}>
                 <div style={{width: "60vw", textAlign: "left"}}>
                     <h1 style={{width: "40vw", textAlign: "left", marginTop: "20px", marginBottom: "25px"}}>BIENVENUE!!!</h1>
-                    <img src={bienvenue} alt="Wine pouring" width="90%" height="40%" style={{textAlign:"left"}}/>
+                    <img src={bienvenue} alt="Wine pouring" width="90%" height="20%" style={{textAlign:"left"}}/>
                     <h3 style={{width: "90%", textAlign:"left", marginTop: "35px"}}>
                         À La Cave à Vins, nous privilégions les vins de petites productions de 
                         vignobles de proximité. Aussi, nous avons la chance de mettre la main 
@@ -28,7 +28,7 @@ export default function Acceuil() {
                 <CombineLoginSignup />
             </div>
 
-            <hr />
+            <hr className='hr-style'/>
 
             <div style={{margin: "100px auto"}}>
                 <h2>ZONE DE LIVRAISON</h2>                
@@ -40,7 +40,7 @@ export default function Acceuil() {
                 </h5>
             </div>
 
-            <hr />
+            <hr className='hr-style'/>
 
             <div style={{display: "flex", flexDirection: "column", margin: "100px auto", width: "90%" }}>
                 <div style={{display: "flex"}}>

@@ -18,16 +18,16 @@ const Signup = () => {
     const onSubmitRegister = async e => {
         
         e.preventDefault()
-        const {nom, prenom, email, password} = e.target
+        const {email, password} = e.target
 
         await axios.post('/api/clients', {
-            nom: nom.value,
-            prenom: prenom.value,
+            // nom: nom.value,
+            // prenom: prenom.value,
             email: email.value,
             password: password.value
         })
-        nom.value = ""
-        prenom.value = ""
+        // nom.value = ""
+        // prenom.value = ""
         email.value = ""
         password.value = ""
         getClients()
@@ -55,8 +55,8 @@ const Signup = () => {
                     <Typography variant='caption' gutterBottom>Remplir les champs pour crée un compte!</Typography>
                 </Grid>
                 <form onSubmit={e => onSubmitRegister(e)}>
-                    <TextField fullWidth label='Nom' name="nom" placeholder="Entrer votre nom" />
-                    <TextField fullWidth label='Prenom' name="prenom" placeholder="Entrer votre prenom" />
+                    {/* <TextField fullWidth label='Nom' name="nom" placeholder="Entrer votre nom" /> */}
+                    {/* <TextField fullWidth label='Prenom' name="prenom" placeholder="Entrer votre prenom" /> */}
          
                     <TextField fullWidth label='Email' name="email" placeholder="Entrer votre email"/>
                     <TextField fullWidth label='Password' name="password" placeholder="Entrer votre mot de passe"/>

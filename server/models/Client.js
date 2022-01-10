@@ -6,23 +6,30 @@ const Schema = mongoose.Schema
 const ClientSchema = new Schema({
   nom: {
     type: String,
-    required: true,
   },
   prenom: {
     type: String,
-    required: true,
   },
   adresse: {
     type: String,
-    required: false,
+  },
+  appartment: {
+    type: String,
+  },
+  ville: {
+    type: String,
+  },
+  province: {
+    type: String,
+  },
+  codePostal: {
+    type: String,
   },
   typeCarte: {
     type: String,
-    required: false,
   },
   numeroCarte: {
     type: String,
-    required: false,
   },
   email: {
     type: String,

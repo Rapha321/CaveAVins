@@ -25,7 +25,7 @@ function App() {
           <Route path="/panier/:clientID" element={<Panier/>} />
           <Route path="/paiementEtape1/:clientID/:sousTotal" element={<PaiementEtape1/>} />
           <Route path="/paiementEtape2/:clientID/:sousTotal" element={<PaiementEtape2/>} />
-          <Route path="/paiementEtape3/:clientID" element={<PaiementEtape3/>} />
+          <Route path="/paiementEtape3/:clientID/:sousTotal" element={<PaiementEtape3/>} />
         </Routes>
 
         <ToastContainer

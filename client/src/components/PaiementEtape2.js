@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { Router, useNavigate, useParams } from "react-router-dom"
 import { Container, Form, Radio, Step, Button } from 'semantic-ui-react'
-import visa from "../images/visa.jpg"
-import amex from "../images/amex.jpg"
-import masterCard from "../images/masterCard.jpg"
+import visa from "../images/visa1.jpg"
+import amex from "../images/amex1.jpg"
+import masterCard from "../images/mastercard1.jpg"
 
 export default function PaiementEtape2() {
 
     let navigate = useNavigate()
     let {clientID, sousTotal} = useParams()
     const [paniers, setPaniers] = useState([]);
+    const [clients, setClients] = useState([]);
     const [vins, setVins] = useState([])
 
 
@@ -26,6 +28,8 @@ export default function PaiementEtape2() {
   
       // paniers.map(x => {if (isMounted && x.clientID === clientID) {
       //     setPanierExist(true)
+
+      return () => {isMounted = false};
       }, [])
 
 
@@ -55,79 +59,104 @@ export default function PaiementEtape2() {
         </div>
       )
 
-      
+      const updateClient = async (e) => { 
+        e.preventDefault()
+  
+        const {typeCarte, numeroCarte} = e.target
 
-      const paiementEtape3 = () => {
-        navigate(`/paiementEtape3`)
+        await axios.post(`/api/clients/update/${clientID}`, {
+          typeCarte: typeCarte.value,
+          numeroCarte: numeroCarte.value
+        })
+        .then(res => {
+            console.log("mise a jour avec succes")
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+  
+        getClients()
+     }
+  
+      // Read
+      const getClients = async () => {
+        const res = await axios.get('/api/clients')
+        const data = res.data
+  
+        setClients(data)
+      }
+
+      const paiementEtape3 = (e) => {
+        updateClient(e)
+        navigate(`/paiementEtape3/${clientID}/${sousTotal}`)
       }
 
       const paiementEtape1 = () => {
         navigate(`/paiementEtape1/${clientID}/${sousTotal}`)
       }
 
-
     return (
         <Container style={{margin: "20px 20px", width: "100vw"}}>
 
           <div style={{display: "flex", justifyContent: "center"}}>
 
-            <div style={{marginTop: "10px"}}>
-                <h1 style={{marginBottom: "20px"}}>PAIEMENT</h1>
+            <div style={{marginTop: "10px"}} className='jumbotron'>
+                <h1 style={{marginBottom: "20px"}}>Paiement</h1>
                 <div style={{textAlign: "left"}}>
                     {StepExampleOrdered()}
                     
                     <br/><br/>
                     <h6 style={{textAlign: "left", marginLeft: "25%"}}>Sélectionnez votre méthode de paiement:</h6>
-                    <Form style={{textAlign: "left", marginLeft: "25%", width: "100%"}}>
+                    <Form style={{textAlign: "left", marginLeft: "25%", width: "100%"}}
+                          onSubmit={e => paiementEtape3(e)}>
                         <Form.Group inline >
                             <Form.Field
                                 label={<img src={visa} />}
                                 control='input'
                                 type='radio'
-                                name='carteCredit'
-                                style={{marginLeft: "50px"}}
+                                name='typeCarte'
+                                value="Visa"
+                                style={{marginLeft: "35px"}}
                             /> 
                             <Form.Field
                                 label={<img src={amex} />}
                                 control='input'
                                 type='radio'
-                                name='carteCredit'
+                                name='typeCarte'
+                                value="American Express"
                                 style={{marginLeft: "10px"}}
                             />  
                             <Form.Field
                                 label={<img src={masterCard} />}
                                 control='input'
                                 type='radio'
-                                name='carteCredit'
+                                name='typeCarte'
+                                value="Master Card"
                                 style={{marginLeft: "10px"}}
                             />  
                         </Form.Group>
                         <Form.Group>
-                            <Form.Input label='Numero Carte' placeholder='Numero Carte' width={8} />
+                            <Form.Input label='Numero Carte' name="numeroCarte" placeholder='Numero Carte' width={8} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Input label="Date d'expiration" placeholder='MM/YY' width={4} />
                             <Form.Input label="CVC / CVV" placeholder='123' width={4} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Input label="Ville" placeholder='Ville' width={4} />
-                            <Form.Input label="Province" placeholder='Province' width={4} />
-                        </Form.Group>
-                        <Form.Group>
                             <Form.Input label="Nom du titulaire" placeholder='John Doe' width={8} />
                         </Form.Group>
+
+                        <br/>
+                        <Button color="blue" onClick={paiementEtape1} style={{float: "left", marginLeft: "0"}}>Retour - Etape 1</Button>
+                        <Button color="green" style={{float: "right", marginRight: "50%"}}>Suivant - Etape 3</Button>
+
                     </Form>
                 </div>
 
-                <br />
-
-                <Button color="blue" onClick={paiementEtape1} style={{float: "left", marginLeft: "10px"}}>Retour - Etape 1</Button>
-                <Button color="green" onClick={paiementEtape3} style={{float: "right", marginRight: "10px"}}>Suivant - Etape 3</Button>
-                
             </div>
-
-          
-            <div style={{marginLeft: "10vw"}}>
+            
+            <div style={{marginLeft: "5vw"}} >
+              <div style={{maxHeight: "50vh", overflowY: "auto"}}>
                 {paniers.map(panier => {
                   return (
                     vins.map(item => {
@@ -136,11 +165,19 @@ export default function PaiementEtape2() {
                             
                           return (
                             <div style={{display: "flex", flexDirection: "row", marginBottom: "20px"}} key={item._id}>
+
                               <tr>
-                                <span className="prixTag">{panier.quantity}</span>
-                                <img src={require(`../images/regions/${item.imgVins}`)}
-                                    style={{width: "70px", maxWidth: "70px", height: "100px", maxHeight: "100px"}} />
-                              </tr>
+                                  <div style={{display: "flex"}}>
+                                    <div>
+                                        <img src={require(`../images/regions/${item.imgVins}`)}
+                                            style={{width: "70px", maxWidth: "70px", height: "100px", maxHeight: "100px"}} />
+                                    </div>
+                                    <div className="prixTag" style={{height: "30px", width: "30px", marginRight: "10px"}}>
+                                      {panier.quantity}
+                                    </div>
+                                  </div>
+                                </tr>
+
 
                               <tr>
                                 <div style={{width: "18vw", maxWidth: "18vw", marginTop: "20px", textAlign: "left"}}>
@@ -151,7 +188,7 @@ export default function PaiementEtape2() {
                               </tr>
 
                               <tr>
-                                <h5 style={{marginTop: "20px"}}>{panier.quantity * item.prix} $</h5>
+                                <h5 style={{marginTop: "20px", marginRight: "10px", marginLeft: "5px"}}>{panier.quantity * item.prix} $</h5>
                               </tr>
 
                               <br />
@@ -161,6 +198,7 @@ export default function PaiementEtape2() {
                     })
                   )
                 })}
+                </div>
               
               <hr/>
 
