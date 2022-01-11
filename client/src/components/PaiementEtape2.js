@@ -5,6 +5,7 @@ import { Container, Form, Radio, Step, Button } from 'semantic-ui-react'
 import visa from "../images/visa1.jpg"
 import amex from "../images/amex1.jpg"
 import masterCard from "../images/mastercard1.jpg"
+import Header from '../components/Header';
 
 export default function PaiementEtape2() {
 
@@ -26,9 +27,6 @@ export default function PaiementEtape2() {
           .then(res => res.json())
           .then(data => { if (isMounted){ setVins(data) } })
   
-      // paniers.map(x => {if (isMounted && x.clientID === clientID) {
-      //     setPanierExist(true)
-
       return () => {isMounted = false};
       }, [])
 
@@ -98,7 +96,9 @@ export default function PaiementEtape2() {
     return (
         <Container style={{margin: "20px 20px", width: "100vw"}}>
 
-          <div style={{display: "flex", justifyContent: "center"}}>
+          <Header client={clientID}/>
+
+          <div style={{display: "flex", justifyContent: "center", marginTop: "5%"}}>
 
             <div style={{marginTop: "10px"}} className='jumbotron'>
                 <h1 style={{marginBottom: "20px"}}>Paiement</h1>
@@ -147,7 +147,7 @@ export default function PaiementEtape2() {
                         </Form.Group>
 
                         <br/>
-                        <Button color="blue" onClick={paiementEtape1} style={{float: "left", marginLeft: "0"}}>Retour - Etape 1</Button>
+                        <Button color="grey" onClick={paiementEtape1} style={{float: "left", marginLeft: "0"}}>Retour - Etape 1</Button>
                         <Button color="green" style={{float: "right", marginRight: "50%"}}>Suivant - Etape 3</Button>
 
                     </Form>

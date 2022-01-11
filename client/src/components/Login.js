@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const Login=({handleChange})=>{
 
-    const paperStyle={padding :20, width:300, height:390, margin:"0 auto"}
+    const paperStyle={padding :30, width:320, height:330, margin:"0 auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
     

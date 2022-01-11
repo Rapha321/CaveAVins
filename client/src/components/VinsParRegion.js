@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Router, useNavigate, useParams } from "react-router-dom"
 import { Container } from 'semantic-ui-react'
+import Header from '../components/Header';
 
 
     export default function VinsParRegion() {
@@ -30,11 +31,13 @@ import { Container } from 'semantic-ui-react'
 
         return (
             <Container>
+
+                <Header client={clientID}/>
                     
                 {regions1.map(item => {
                     if (item._id === regionID) {
                         return (
-                            <Container>
+                            <Container style={{marginTop: "5%"}}>
                                 <h1>{item.nomRegion}</h1>
                                 <div style={{display: "flex"}}>
                                     <img src={require(`../images/regions/${item.imgRegion}`)}

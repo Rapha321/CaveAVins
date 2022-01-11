@@ -4,7 +4,7 @@ import { Grid, Paper, Avatar, Typography, TextField, Button } from '@material-ui
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
 const Signup = () => {
-    const paperStyle = { padding: 20, width: 300, height:390, margin: "0 auto" }
+    const paperStyle = { padding: 30, width: 320, height:330, margin: "0 auto" }
     const headerStyle = { margin: 0 }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
 
@@ -21,13 +21,9 @@ const Signup = () => {
         const {email, password} = e.target
 
         await axios.post('/api/clients', {
-            // nom: nom.value,
-            // prenom: prenom.value,
             email: email.value,
             password: password.value
         })
-        // nom.value = ""
-        // prenom.value = ""
         email.value = ""
         password.value = ""
         getClients()

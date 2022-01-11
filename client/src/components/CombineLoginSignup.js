@@ -13,7 +13,7 @@ const CombineLoginSignup=()=>{
         setValue(newValue);
     };
 
-  const paperStyle={padding: 20, width:390, margin:"20px auto"}
+  const paperStyle={padding: 30, width:390, height: 470, margin:"20px auto"}
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -43,9 +43,9 @@ const CombineLoginSignup=()=>{
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          <Tab label="Sign In" />
+          <Tab label="Connexion" />
          
-          <Tab label="Sign Up" />
+          <Tab label="Enregistrer" />
         </Tabs>
         <TabPanel value={value} index={0}>
        <Login handleChange={handleChange}/>

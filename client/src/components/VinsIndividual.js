@@ -5,6 +5,7 @@ import { useBootstrapPrefix } from 'react-bootstrap/esm/ThemeProvider';
 import { Router, useNavigate, useParams } from "react-router-dom"
 import { ButtonContent, Container, Input } from 'semantic-ui-react'
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import Header from '../components/Header';
 
 
 export default function VinsIndividuel() {
@@ -70,11 +71,13 @@ export default function VinsIndividuel() {
 
     return (
         <Container style={{marginTop: "50px"}}>
+
+            <Header client={clientID}/>
            
             {vins.map(item => {
                 if (item._id === vinsID) {
                     return (
-                        <div style={{display: "flex"}}>
+                        <div style={{display: "flex", marginTop: "5%"}}>
                             
                             <img src={require(`../images/regions/${item.imgVins}`)}
                                 style={{width: "25vw", maxWidth: "25vw", height: "60vh", maxHeight: "60vh"}} />

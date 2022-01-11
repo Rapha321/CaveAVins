@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Router, useNavigate, useParams } from "react-router-dom"
 import { Button, ButtonContent, Checkbox, Grid, Input, Label } from 'semantic-ui-react';
+import Header from './Header';
 
 export default function Panier() {
 
@@ -106,7 +107,7 @@ export default function Panier() {
                                                 <h4>{item.nom}</h4>
                                                 <Button inverted color='olive' 
                                                         size='mini' 
-                                                        style={{ float: "right", 
+                                                        style={{ marginLeft: "auto", 
                                                                  maxHeight: "27px", 
                                                                  paddingLeft: "5px", 
                                                                  paddingRight: "5px" }}
@@ -162,13 +163,14 @@ export default function Panier() {
 
     return (
         <Container>
-            <h1 style={{float: "left", marginTop: "10px"}}>PANIER</h1>
+            <Header client={clientID} />
+            <h1 style={{float: "left", marginTop: "5%"}}>PANIER</h1>
             <br/>
-            <hr style={{marginTop: "35px"}}/>
+            <hr style={{marginTop: "7%"}}/>
 
             <div style={{display: "flex"}}>
                 <div style={{width: "60vw", maxWidth: "60vw"}}>
-                    {panierExist === false ? afficherPanier() : <h1>Votre panier est vide!</h1>}
+                    {panierExist === false ? afficherPanier() : <h1 style={{marginTop: "10%", marginLeft: "0"}}>Votre panier est vide!</h1>}
                 </div>
                 <div style={{display: "flex", flexDirection: "column", width: "25vw", maxWidth: "25vw"}}>
                         
@@ -190,7 +192,6 @@ export default function Panier() {
                 </div>
             </div>
 
-            
         </Container>
     )
 }

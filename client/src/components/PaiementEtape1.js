@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Router, useNavigate, useParams } from "react-router-dom"
 import { Container, Form, Step, Button, Grid } from 'semantic-ui-react'
+import Header from '../components/Header'
 
 export default function PaiementEtape1() {
 
@@ -96,8 +97,10 @@ export default function PaiementEtape1() {
 
     return (
         <Container style={{margin: "20px 20px", width: "100vw"}}>
+
+          <Header client={clientID}/>
           
-          <div style={{display: "flex", justifyContent: "center"}} >
+          <div style={{display: "flex", justifyContent: "center", marginTop: "5%"}} >
             <div style={{marginTop: "10px"}} className='jumbotron'>
                 <h1 style={{marginBottom: "20px"}}>Paiement</h1>
                 <br />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Header from '../components/Header';
 import { Button } from 'react-bootstrap';
 import { Container } from "semantic-ui-react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,6 +24,8 @@ export default function Regions() {
         
     return (
         <Container>
+            <Header client={clientID}/>
+
             <h2>Magasiner par regions:</h2>
             <Container style={{display: "flex", flexWrap: "wrap", margin: "30px auto", justifyContent: "space-around"}}>
                 

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate, useParams } from "react-router-dom";
 import { LabelDetail } from 'semantic-ui-react';
 
-export default function Header() {
+export default function Header(props) {
 
     const location = useLocation()
     let navigate = useNavigate();
@@ -12,15 +12,15 @@ export default function Header() {
 
     const [style, setStyle] = useState("block")
 
-    React.useEffect(() => {
+
+    useEffect(() => {
         location.pathname === '/' ? setStyle("none") : setStyle("block")
       }, [location])
 
 
 
     const afficherPanier = () => {
-        if (clientID)
-            navigate(`/panier/${clientID}`)
+        navigate(`/panier/${props.client}`)
     }
 
 
@@ -31,7 +31,7 @@ export default function Header() {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                    <span onClick={afficherPanier} style={{ display: style }}>
+                    <span onClick={afficherPanier} style={{ display: style, color: "teal" }}>
                         <i class="fas fa-2x fa-cart-arrow-down"></i>
                     </span>
                 </Navbar.Text>
