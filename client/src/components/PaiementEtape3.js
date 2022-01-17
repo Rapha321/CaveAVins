@@ -10,11 +10,15 @@ export default function PaiementEtape3() {
 
     let navigate = useNavigate()
     let {clientID, sousTotal} = useParams()
-    const [paniers, setPaniers] = useState([]);
-    const [clients, setClients] = useState([]);
+    const [paniers, setPaniers] = useState([])
+    const [clients, setClients] = useState([])
     const [vins, setVins] = useState([])
+    const [commandes, setCommandes] = useState([])
+    // const [item, setItem] = useState([])
+
 
     const [show, setShow] = useState(false);
+
 
     useEffect(() => {
       let isMounted = true;
@@ -58,6 +62,51 @@ export default function PaiementEtape3() {
       const data = res.data
       setPaniers(data)
     }
+
+
+    const creerCommande = async () => { 
+      let item = [];
+
+      paniers.map(panier => {
+        if (panier.clientID === clientID) {
+        
+          let nom = ""
+          let prix = 0
+          vins.map(v => {if (v._id === panier.vinsID) {nom = v.nom; prix = v.prix}})
+
+          item.push({ 
+            vinsID: panier.vinsID, 
+            nom: nom, 
+            quantity: panier.quantity, 
+            prix: prix * panier.quantity
+          })
+
+        }
+      })
+
+      await axios.post(`/api/commandes`, {
+          date: Date, 
+          clientID: clientID, 
+          item: item,
+          status: "Nous préparons votre commande"
+      })
+      .then(res => {
+          console.log("mise a jour avec succes")
+      })
+      .catch(err => {
+          console.log(err.response)
+      })
+
+      getCommandes()
+    }
+
+    // Read
+    const getCommandes = async () => {
+        const res = await axios.get('/api/commandes')
+        const data = res.data
+        setCommandes(data)
+    }
+
 
     const handleClose = () => {
         setShow(false) 
@@ -113,7 +162,6 @@ export default function PaiementEtape3() {
         <Header client={clientID}/>
 
         <div style={{display: "flex", justifyContent: "center", marginTop: "5%"}}>
-
           <div className='jumbotron' >
               <h1>Paiement</h1>
               {StepExampleOrdered()}
@@ -149,7 +197,7 @@ export default function PaiementEtape3() {
               <br/><br/>
               <Button variant='secondary' style={{width: "90px"}} onClick={handleRetour}>Retours</Button>
 
-              <Button variant="success" onClick={handleShow} style={{width: "90px", marginLeft: "155px"}}>
+              <Button variant="success" onClick={() => {creerCommande(); handleShow();}} style={{width: "90px", marginLeft: "155px"}}>
                 Confirmer
               </Button>
 
@@ -159,15 +207,15 @@ export default function PaiementEtape3() {
                 backdrop="static"
                 keyboard={false}
               >
-                <Modal.Header closeButton>
-                  <Modal.Title>Felicitation!!!</Modal.Title>
+                <Modal.Header >
+                  <Modal.Title>Félicitations!!!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                   Nous avons bien recu votre commande. Votre livraison sera effectuer dans un delai de 24 heures!
+                   Nous avons bien recu votre commande. Votre livraison sera effectuée dans un délai de 24 heures!
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="primary" onClick={handleClose}>
-                    Close
+                    Fermer
                   </Button>
                 </Modal.Footer>
               </Modal>
@@ -177,29 +225,28 @@ export default function PaiementEtape3() {
           <div style={{marginLeft: "5vw", maxHeight: "60vh", overflowX: "auto"}} >
             {paniers.map(panier => {
               return (
-                vins.map(item => {
+                vins.map(vin => {
                     
-                    if (item._id === panier.vinsID && panier.clientID === clientID) {
+                    if (vin._id === panier.vinsID && panier.clientID === clientID) {
                         
                       return (
-                        <div style={{display: "flex", flexDirection: "row", marginBottom: "20px"}} key={item._id}>
+                        <div style={{display: "flex", flexDirection: "row", marginBottom: "20px"}} key={vin._id}>
                           <tr>
                             <span className="prixTag" >{panier.quantity}</span>
-                            <img src={require(`../images/regions/${item.imgVins}`)}
+                            <img src={require(`../images/regions/${vin.imgVins}`)}
                                 style={{width: "70px", maxWidth: "70px", height: "100px", maxHeight: "100px"}} />
-                            
                           </tr>
 
                           <tr>
                             <div style={{width: "18vw", maxWidth: "18vw", marginTop: "20px", textAlign: "left"}}>
                                 <div style={{display: "flex"}}>
-                                    <h6>{item.nom}</h6>
+                                    <h6>{vin.nom}</h6>
                                 </div>
                             </div>
                           </tr>
 
                           <tr>
-                            <h5 style={{marginTop: "20px", marginRight: "5px"}}>{panier.quantity * item.prix} $</h5>
+                            <h5 style={{marginTop: "20px", marginRight: "5px"}}>{panier.quantity * vin.prix} $</h5>
                           </tr>
 
                           <br />

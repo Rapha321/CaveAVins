@@ -7,6 +7,8 @@ import collections from '../images/collections.jpg'
 import bienvenue from '../images/bienvenue.jpg'
 import zoneLivraison from '../images/zone-livraison.jpg'
 import hrImage from "../images/hr-Img.jpeg"
+import wineCollections from "../images/wineCollections.jpg"
+import wineGlasses from "../images/wineGlass.jpg"
 
 export default function Acceuil() {
 
@@ -16,8 +18,8 @@ export default function Acceuil() {
 
             <Header/>
 
-            <div className='acceuil' style={{margin: "60px auto"}}>
-                <div style={{width: "60vw", textAlign: "left"}}>
+            <div className='acceuil' style={{margin: "60px auto", display: "flex", justifyContent: "center"}}>
+                <div style={{width: "50vw", textAlign: "left"}}>
                     <h1 style={{width: "40vw", 
                                 textAlign: "left", 
                                 marginTop: "20px", 
@@ -73,12 +75,12 @@ export default function Acceuil() {
                           }}/>
 
             <div style={{display: "flex", flexDirection: "column", margin: "100px auto", width: "80%" }}>
-                <div style={{display: "flex"}}>
+                <div style={{display: "flex", marginBottom: "30px"}}>
                     <div>
-                        <img src={collections} alt="note collections" style={{marginLeft: "50px", width: "350px", borderRadius: "5px"}}/> 
+                        <img src={wineCollections} alt="note collections" style={{marginLeft: "50px", width: "370px", borderRadius: "5px"}}/> 
                     </div>
                     <div style={{width: "40%", margin: "auto"}}>
-                        <h4>Nous avons une sélection de vins de plus d'une 
+                        <h4 style={{textAlign: "left"}}>Nous avons une sélection de vins de plus d'une 
                         soixantaine de vignobles de notre belle province, en plus de quelques 
                         bières, cidres et boissons sans alcool du Québec! </h4>
                     </div>
@@ -86,12 +88,12 @@ export default function Acceuil() {
 
                 <div style={{display: "flex"}}>
                     <div style={{width: "40%", margin: "auto"}}>
-                        <h4>On vous remercie de boire local et de votre intérêt envers les 
+                        <h4 style={{textAlign: "right"}}>On vous remercie de boire local et de votre intérêt envers les 
                         vignerons du Québec, qui n'ont pas toujours la reconnaissance qu'ils méritent.
                         </h4>
                     </div>
-                    <div style={{marginRight: "30px"}}>
-                        <img src={pouring} alt="Wine pouring" style={{width: "350px", borderRadius: "5px"}}/> 
+                    <div style={{marginRight: "40px"}}>
+                        <img src={wineGlasses} alt="Wine pouring" style={{width: "370px", borderRadius: "5px"}}/> 
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Router, useNavigate, useParams } from "react-router-dom"
-import { Container, Form, Step, Button, Grid } from 'semantic-ui-react'
+import { Container, Form, Step, Button, Icon } from 'semantic-ui-react'
 import Header from '../components/Header'
 
 export default function PaiementEtape1() {
@@ -95,6 +95,10 @@ export default function PaiementEtape1() {
       navigate(`/paiementEtape2/${clientID}/${sousTotal}`)
     }
 
+    const retourPanier = () => {
+      navigate(`/panier/${clientID}`)
+    }
+
     return (
         <Container style={{margin: "20px 20px", width: "100vw"}}>
 
@@ -124,7 +128,8 @@ export default function PaiementEtape1() {
                         <Form.Input label="Code Postal" name="codePostal" placeholder='Code Postal' width={4} />
                     </Form.Group>
                     <br />
-                    <Button color="green" >Suivant - Etape 2</Button>
+                    <Button color="grey" onClick={retourPanier} style={{float: "left", marginLeft: "0"}}>Retour au panier</Button>
+                    <Button color="green" style={{marginLeft: "15%"}}>Suivant - Etape 2<Icon name='chevron right' /></Button>
                 </Form>
 
             </div>

@@ -6,6 +6,7 @@ const PanierSchema = new Schema({
   clientID: {
     type: String
   },
+
   vinsID: {
     type: String
   },

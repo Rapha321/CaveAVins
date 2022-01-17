@@ -26,7 +26,7 @@ export default function Panier() {
             .then(res => res.json())
             .then(data => { if (isMounted){ setVins(data) } })
 
-        paniers.map(x => {if (isMounted && x.clientID === clientID) {
+        paniers.map(panier => {if (isMounted && panier.clientID === clientID) {
             setPanierExist(true)
         }})
 
@@ -86,6 +86,10 @@ export default function Panier() {
     const updateSousTotal = (qty, prix) => {
         prixTotal += (qty * prix)
     }
+
+    const continuerMagasiner = () => {
+        navigate(`/regions/${clientID}`)
+    }
     
     const afficherPanier = () => {
         return (
@@ -105,7 +109,7 @@ export default function Panier() {
                                         <div style={{width: "40vw", maxWidth: "30vw", marginTop: "20px", textAlign: "left"}}>
                                             <div style={{display: "flex"}}>
                                                 <h4>{item.nom}</h4>
-                                                <Button inverted color='olive' 
+                                                <Button inverted color='red' 
                                                         size='mini' 
                                                         style={{ marginLeft: "auto", 
                                                                  maxHeight: "27px", 
@@ -156,7 +160,6 @@ export default function Panier() {
                     )
                 })}
             </div>
-            
         )
     }
 
@@ -165,12 +168,17 @@ export default function Panier() {
         <Container>
             <Header client={clientID} />
             <h1 style={{float: "left", marginTop: "5%"}}>PANIER</h1>
+            <span style={{float: "right", marginTop: "5%"}}>
+                <Button inverted color='olive' onClick={continuerMagasiner}>
+                    Continuer a magasiner!
+                </Button>
+            </span>
             <br/>
             <hr style={{marginTop: "7%"}}/>
 
             <div style={{display: "flex"}}>
                 <div style={{width: "60vw", maxWidth: "60vw"}}>
-                    {panierExist === false ? afficherPanier() : <h1 style={{marginTop: "10%", marginLeft: "0"}}>Votre panier est vide!</h1>}
+                    {afficherPanier()}
                 </div>
                 <div style={{display: "flex", flexDirection: "column", width: "25vw", maxWidth: "25vw"}}>
                         

@@ -26,7 +26,10 @@ const Login=({handleChange})=>{
 
         data.map(user => {
 
-            if (user.email == email.value && user.password == password.value) {
+            if (email.value === "admin@email.com" && password.value === "admin") {
+                navigate(`/admin`)
+            }
+            else if (user.email === email.value && user.password === password.value) {
                 navigate(`/regions/${user._id}`)
             }
                 

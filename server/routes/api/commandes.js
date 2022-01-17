@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const newCommande = new Commande({
     date: Date(),
-    quantity: req.body.quantity,
+    clientID: req.body.clientID,
     item: req.body.item,
     status: req.body.status
   })
@@ -46,7 +46,7 @@ router.post('/update/:id', (req, res) => {
         quantity: req.body.quantity,
         item: req.body.item,
         status: req.body.status
-      },
+      }
     },
     {new: true},
   )

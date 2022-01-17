@@ -4,19 +4,13 @@ const Schema = mongoose.Schema
 const CommandeSchema = new Schema({
   date: {
     type: Date,
-    required: true,
   },
-  quantity: {
-    type: Number,
-    required: true,
-  },
-  item: {
+  clientID: {
     type: String,
-    required: true,
   },
+  item: Array,
   status: {
     type: String,
-    required: true,
   }
 
 })

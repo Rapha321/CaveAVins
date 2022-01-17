@@ -41,8 +41,13 @@ import Header from '../components/Header';
                                 <h1>{item.nomRegion}</h1>
                                 <div style={{display: "flex"}}>
                                     <img src={require(`../images/regions/${item.imgRegion}`)}
-                                         style={{width: "500px", maxWidth: "500px", maxHeight: "450px"}} />
-                                    <span style={{width: "40%", marginLeft: "20px"}}>{item.descrRegion}</span>
+                                         style={{width: "500px", maxWidth: "500px", maxHeight: "450px", border: "2px solid teal", borderRadius: "7px"}} />
+                                    <p style={{ width: "40%", 
+                                                marginLeft: "20px", 
+                                                fontSize: "15px", 
+                                                textAlign: "left"}}>
+                                            {item.descrRegion}
+                                    </p>
                                 </div>
                             </Container>
                         )

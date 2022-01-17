@@ -9,14 +9,15 @@ import Panier from './components/Panier'
 import PaiementEtape1 from './components/PaiementEtape1';
 import PaiementEtape2 from './components/PaiementEtape2';
 import PaiementEtape3 from './components/PaiementEtape3';
+import Admin from './components/Admin'
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Commande from './components/Commande';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Acceuil />} exact />
           <Route path="/regions/:clientID" element={<Regions />} />
@@ -26,6 +27,9 @@ function App() {
           <Route path="/paiementEtape1/:clientID/:sousTotal" element={<PaiementEtape1/>} />
           <Route path="/paiementEtape2/:clientID/:sousTotal" element={<PaiementEtape2/>} />
           <Route path="/paiementEtape3/:clientID/:sousTotal" element={<PaiementEtape3/>} />
+          <Route path="/admin" element={<Admin/>} />
+          {/* <Route path="/commande" element={<Commande/>} /> */}
+
         </Routes>
 
         <ToastContainer
