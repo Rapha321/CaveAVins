@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Navbar, Container } from 'react-bootstrap';
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-// import Button from '@mui/material/Button';
 import Commande from './Commande';
 import { Button, Icon, Image, Modal } from 'semantic-ui-react'
 
@@ -47,7 +46,7 @@ export default function Header(props) {
                         open={open}
                         onClose={() => setOpen(false)}
                         onOpen={() => setOpen(true)}
-                        trigger={<Button>Mes commandes</Button>}
+                        trigger={<Button size='mini' color='blue' style={{marginRight: "30px"}}>Mes commandes</Button>}
                         style={{position: "relative", 
                                 width: "80vw", 
                                 maxWidth: "80vw", 
@@ -80,7 +79,7 @@ export default function Header(props) {
                                                 Object.values(commande.item).map(x => {
                                                     return (
                                                         <tr key={x.vinsID}>
-                                                            <td>{commande._id}</td>
+                                                            <td style={{padding: "10px 4px"}}>{commande._id}</td>
                                                             <td>{x.quantity}</td>
                                                             <td>{x.nom}</td>
                                                             <td>{x.prix}</td>

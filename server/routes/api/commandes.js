@@ -38,13 +38,13 @@ router.delete('/', (req, res) => {
 
 // @route UPDATE /api/commandes/update/:id
 // @desc Update commande (public)
-router.post('/update/:id', (req, res) => {
+router.post('/update/:commandeID', (req, res) => {
   Commande.findOneAndUpdate(
-    {_id: req.params.id},
+    {_id: req.params.commandeID},
     {
       $set: {
-        quantity: req.body.quantity,
-        item: req.body.item,
+        // quantity: req.body.quantity,
+        // item: req.body.item,
         status: req.body.status
       }
     },

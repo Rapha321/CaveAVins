@@ -13,6 +13,9 @@ import Admin from './components/Admin'
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Commande from './components/Commande';
+import AdminRegion from './components/AdminRegion';
+import AdminVins from './components/AdminVins';
+import AdminCommandes from './components/AdminCommandes';
 
 function App() {
   return (
@@ -28,8 +31,9 @@ function App() {
           <Route path="/paiementEtape2/:clientID/:sousTotal" element={<PaiementEtape2/>} />
           <Route path="/paiementEtape3/:clientID/:sousTotal" element={<PaiementEtape3/>} />
           <Route path="/admin" element={<Admin/>} />
-          {/* <Route path="/commande" element={<Commande/>} /> */}
-
+          <Route path="/adminRegion" element={<AdminRegion/>} />
+          <Route path="/adminVins" element={<AdminVins/>} />
+          <Route path="/adminCommandes" element={<AdminCommandes/>} />
         </Routes>
 
         <ToastContainer

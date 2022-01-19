@@ -14,7 +14,6 @@ export default function PaiementEtape3() {
     const [clients, setClients] = useState([])
     const [vins, setVins] = useState([])
     const [commandes, setCommandes] = useState([])
-    // const [item, setItem] = useState([])
 
 
     const [show, setShow] = useState(false);
@@ -88,7 +87,7 @@ export default function PaiementEtape3() {
           date: Date, 
           clientID: clientID, 
           item: item,
-          status: "Nous préparons votre commande"
+          status: "En préparation"
       })
       .then(res => {
           console.log("mise a jour avec succes")

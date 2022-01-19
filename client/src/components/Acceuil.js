@@ -12,7 +12,6 @@ import wineGlasses from "../images/wineGlass.jpg"
 
 export default function Acceuil() {
 
-   
     return (
         <Container >
 
@@ -28,7 +27,7 @@ export default function Acceuil() {
                                 fontWeight: 'bold',
                                 fontSize: "55px",
                                 marginBottom: "0"
-                                }}>
+                               }}>
                                     Bienvenue!!!
                     </h1>
                     <img src={bienvenue} alt="Wine pouring" width="90%" height="20%" style={{textAlign:"left", borderRadius: "5px"}}/>
