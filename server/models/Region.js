@@ -9,7 +9,6 @@ const RegionSchema = new Schema({
   },
   imgRegion: {
     type: String,
-    required: true
   },
   descrRegion: {
     type: String,
