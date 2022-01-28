@@ -33,6 +33,10 @@ export default function Header(props) {
         navigate(`/panier/${props.client}`)
     }
 
+    const signout = () => {
+        navigate(`/`)
+    }
+
 
     return (
         <Navbar>
@@ -40,18 +44,20 @@ export default function Header(props) {
                 <Navbar.Brand href="#home"><h1>Cave à Vins</h1></Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
-                <Navbar.Text style={{display: "flex"}}>
+                <Navbar.Text style={{display: style === "block" ? "flex" : "none"}}>
 
                     <Modal
                         open={open}
                         onClose={() => setOpen(false)}
                         onOpen={() => setOpen(true)}
                         trigger={<Button size='mini' color='blue' style={{marginRight: "30px"}}>Mes commandes</Button>}
-                        style={{position: "relative", 
-                                width: "80vw", 
-                                maxWidth: "80vw", 
-                                height: "80vh", 
-                                maxHeight: "80vh"}}
+                        style={{
+                                    position: "relative", 
+                                    width: "80vw", 
+                                    maxWidth: "80vw", 
+                                    height: "80vh", 
+                                    maxHeight: "80vh"
+                                }}
                     >
                         <Modal.Header>Mes Commandes:</Modal.Header>
                         <Modal.Content image scrolling 
@@ -101,8 +107,12 @@ export default function Header(props) {
                         </Modal.Actions>
                     </Modal>
 
-                    <span onClick={afficherPanier} style={{ display: style, color: "teal" }}>
+                    <span onClick={afficherPanier} style={{ display: style, color: "springgreen" }}>
                         <i class="fas fa-2x fa-cart-arrow-down"></i>
+                    </span>
+
+                    <span onClick={signout} style={{ display: style, color: "red", marginLeft: "20px" }}>
+                        <i class="fas fa-2x fa-sign-out-alt"></i>
                     </span>
                 </Navbar.Text>
                 </Navbar.Collapse>

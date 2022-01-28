@@ -169,7 +169,7 @@ export default function PaiementEtape2() {
                               <tr>
                                   <div style={{display: "flex"}}>
                                     <div>
-                                        <img src={require(`../images/regions/${item.imgVins}`)}
+                                        <img src={require(`../images/vins/${item.imgVins}`)}
                                             style={{width: "70px", maxWidth: "70px", height: "100px", maxHeight: "100px"}} />
                                     </div>
                                     <div className="prixTag" style={{height: "30px", width: "30px", marginRight: "10px"}}>

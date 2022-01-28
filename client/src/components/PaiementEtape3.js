@@ -232,7 +232,7 @@ export default function PaiementEtape3() {
                         <div style={{display: "flex", flexDirection: "row", marginBottom: "20px"}} key={vin._id}>
                           <tr>
                             <span className="prixTag" >{panier.quantity}</span>
-                            <img src={require(`../images/regions/${vin.imgVins}`)}
+                            <img src={require(`../images/vins/${vin.imgVins}`)}
                                 style={{width: "70px", maxWidth: "70px", height: "100px", maxHeight: "100px"}} />
                           </tr>
 

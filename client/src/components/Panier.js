@@ -103,7 +103,7 @@ export default function Panier() {
                                 return (
                                     
                                     <div style={{display: "flex", flexDirection: "row", marginBottom: "20px"}} key={item._id}>
-                                        <img src={require(`../images/regions/${item.imgVins}`)}
+                                        <img src={require(`../images/vins/${item.imgVins}`)}
                                             style={{width: "150px", maxWidth: "150px", height: "200px", maxHeight: "200px"}} />
                                         
                                         <div style={{width: "40vw", maxWidth: "30vw", marginTop: "20px", textAlign: "left"}}>

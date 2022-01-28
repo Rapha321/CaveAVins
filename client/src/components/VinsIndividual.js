@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Button, ButtonGroup, Dropdown, ToastHeader } from 'react-bootstrap';
 import { useBootstrapPrefix } from 'react-bootstrap/esm/ThemeProvider';
 import { Router, useNavigate, useParams } from "react-router-dom"
-import { ButtonContent, Container, Input } from 'semantic-ui-react'
+import { Button, Container, Input } from 'semantic-ui-react'
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import Header from '../components/Header';
 
@@ -68,21 +67,33 @@ export default function VinsIndividuel() {
         setPaniers(data)
     }
 
+    const afficherRegions = () => {
+        navigate(`/regions/${clientID}`)
+    }
+
 
     return (
         <Container style={{marginTop: "50px"}}>
 
             <Header client={clientID}/>
+
+            <span style={{float: "right", marginTop: "2%"}}>
+                <Button inverted color='blue' onClick={afficherRegions}>
+                    Voir les regions
+                </Button>
+            </span>
+            <br/>
            
             {vins.map(item => {
                 if (item._id === vinsID) {
                     return (
                         <div style={{display: "flex", marginTop: "5%"}}>
                             
-                            <img src={require(`../images/regions/${item.imgVins}`)}
-                                style={{width: "25vw", maxWidth: "25vw", height: "60vh", maxHeight: "60vh"}} />
+                            <img src={require(`../images/vins/${item.imgVins}`)}
+                                style={{width: "25vw", maxWidth: "25vw", height: "60vh", maxHeight: "60vh", textAlign: "center"}} />
                             
-                            <div style={{width: "40vw", maxWidth: "30vw", marginTop: "20px", textAlign: "left"}}>
+                            <div style={{width: "25vw", maxWidth: "25vw", marginTop: "40px", textAlign: "left"}}>
+                                <br/>
                                 <h3>{item.nom}</h3>
                                 <hr />
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Router, useNavigate, useParams } from "react-router-dom"
-import { Container } from 'semantic-ui-react'
+import { Button, Container } from 'semantic-ui-react'
 import Header from '../components/Header';
 
 
@@ -28,17 +28,28 @@ import Header from '../components/Header';
             navigate(`/vinsIndividuel/${vinsID}/${clientID}`)
         }
 
+        const afficherRegions = () => {
+            navigate(`/regions/${clientID}`)
+        }
+
 
         return (
             <Container>
 
                 <Header client={clientID}/>
-                    
+                
+                <span style={{float: "right", marginTop: "2%"}}>
+                    <Button inverted color='blue' onClick={afficherRegions}>
+                        Voir les regions
+                    </Button>
+                </span>
+                <br/>
+
                 {regions1.map(item => {
                     if (item._id === regionID) {
                         return (
                             <Container style={{marginTop: "5%"}}>
-                                <h1>{item.nomRegion}</h1>
+                                <h1 style={{textAlign: "left"}}>{item.nomRegion}</h1>
                                 <div style={{display: "flex"}}>
                                     <img src={require(`../images/regions/${item.imgRegion}`)}
                                          style={{width: "500px", maxWidth: "500px", maxHeight: "450px", border: "2px solid teal", borderRadius: "7px"}} />
@@ -64,7 +75,7 @@ import Header from '../components/Header';
                                               marginRight: "15px", 
                                               marginTop: "10px"
                                             }}>
-                                    <img src={require(`../images/regions/${item.imgVins}`)}
+                                    <img src={require(`../images/vins/${item.imgVins}`)}
                                         style={{maxHeight: "270px"}} />
                                     <h5>{item.nom}</h5>
                                     <h6>Prix: {item.prix}</h6>

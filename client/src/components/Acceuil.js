@@ -2,8 +2,6 @@ import React from 'react'
 import { Container, Navbar } from 'react-bootstrap'
 import Header from '../components/Header';
 import CombineLoginSignup from './CombineLoginSignup'
-import pouring from '../images/pouring.gif'
-import collections from '../images/collections.jpg'
 import bienvenue from '../images/bienvenue.jpg'
 import zoneLivraison from '../images/zone-livraison.jpg'
 import hrImage from "../images/hr-Img.jpeg"
@@ -99,6 +97,14 @@ export default function Acceuil() {
 
             <br />
 
+            <div style={{width: "100%", height: "350px", backgroundColor: "lavender"}}>
+                <div style={{float: "left", marginLeft: "40px", marginTop: "100px"}}>
+                    <h5 style={{marginBotton: "20px"}}>Rester en contact:</h5>
+                    <a href="#" className="fa fa-facebook"></a>
+                    <a href="#" className="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                </div>
+            </div>
         </Container>
     )
 }

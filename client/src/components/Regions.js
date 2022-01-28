@@ -39,22 +39,23 @@ export default function Regions() {
             <Container style={{display: "flex", flexWrap: "wrap", margin: "30px auto", justifyContent: "space-around"}}>
                 {regions.map(region => 
                     
-                        <div onClick={() => afficherVins(region._id)}
-                             style={{
-                                        marginRight: "15px", 
-                                        marginBottom: "30px",
-                                        border: "2px solid black",
-                                        boxShadow: "10px 10px 5px grey"
-                                    }}
-                            key={region._id}>
+                    <div onClick={() => afficherVins(region._id)}
+                            style={{
+                                    marginRight: "15px", 
+                                    marginBottom: "30px",
+                                    border: "2px solid black",
+                                    boxShadow: "10px 10px 5px grey",
+                                    borderRadius: "5px"
+                                }}
+                        key={region._id}>
 
-                            <div style={{maxWidth: "250px", height: "85px", maxHeight: "85px", backgroundColor: "#e6e6fa", padding: "5px"}}>
-                                <h4>{region.nomRegion}</h4>
-                            </div>
-                            <img src={require(`../images/regions/${region.imgRegion}`)} 
-                                    style={{width: "250px", maxWidth: "250px", maxHeight: "250px"}}
-                            />
+                        <div style={{maxWidth: "250px", height: "85px", maxHeight: "85px", backgroundColor: "#e6e6fa", padding: "5px"}}>
+                            <h4>{region.nomRegion}</h4>
                         </div>
+                        <img src={require(`../images/regions/${region.imgRegion}`)} 
+                                style={{width: "250px", maxWidth: "250px", maxHeight: "250px"}}
+                        />
+                    </div>
                     
                 )}
 
