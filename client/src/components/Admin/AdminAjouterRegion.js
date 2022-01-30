@@ -18,12 +18,10 @@ export default function AdminAjouterRegion() {
         .then(res => setRegions(res.data))
     }, [])
 
-    console.log("file: ", file)
-
     const addRegion = async (e) => { 
         e.preventDefault()
 
-        const {nom, descriptions} = e.target
+        const {nom, imgRegion, descriptions} = e.target
 
         const data = new FormData();
         data.append("file", file[0])
@@ -44,6 +42,10 @@ export default function AdminAjouterRegion() {
         .then(res => { 
             console.log(res.statusText)
         })
+
+        nom.value = "";
+        descriptions.value = "";
+        imgRegion.value = "";
 
     }
 
@@ -66,19 +68,11 @@ export default function AdminAjouterRegion() {
                         </Form.Group>
                         <Form.Group>
                             <label htmlFor="file">
-                                {/* <input type="file" onChange={fileSelectedHandler} /> */}
-                                {/* <button onClick={fileUploadHandler}>Upload</button> */}
                                 <Input accept="image/*" id="contained-button-file" name="imgRegion" multiple type="file" onChange={fileSelectedHandler} style={{width: "500px", marginRight: "20px"}}/>
-                                {/* <Button variant="contained" component="span">
-                                    Upload
-                                    <IconButton color="primary" aria-label="upload picture" component="span" onClick={fileSelectedHandler}>
-                                        <PhotoCamera />
-                                    </IconButton>
-                                </Button>  */}
                             </label>
                         </Form.Group>
                         <br />
-                        <Button color="green" type="submit" style={{marginLeft: "15%"}}>Soumettre</Button>
+                        <Button color="green" type="submit" style={{marginLeft: "15%"}}>Ajouter</Button>
                     </Form>
                 </div>
             </Container>

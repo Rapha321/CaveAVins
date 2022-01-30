@@ -54,9 +54,15 @@ import Header from '../components/Header';
                                     <img src={require(`../images/regions/${item.imgRegion}`)}
                                          style={{width: "500px", maxWidth: "500px", maxHeight: "450px", border: "2px solid teal", borderRadius: "7px"}} />
                                     <p style={{ width: "40%", 
-                                                marginLeft: "20px", 
-                                                fontSize: "15px", 
-                                                textAlign: "left"}}>
+                                                  marginLeft: "20px", 
+                                                  maxWidth: "40%",
+                                                  fontSize: "15px",
+                                                  textAlign: "left"
+                                                //   overflowWrap: "break-word",
+                                                //   overflowY: "scroll",
+                                                //   overflowX: "hidden"
+
+                                                }}>
                                             {item.descrRegion}
                                     </p>
                                 </div>
@@ -78,7 +84,7 @@ import Header from '../components/Header';
                                     <img src={require(`../images/vins/${item.imgVins}`)}
                                         style={{maxHeight: "270px"}} />
                                     <h5>{item.nom}</h5>
-                                    <h6>Prix: {item.prix}</h6>
+                                    <h6>Prix: {item.prix}$</h6>
                                 </div>
                             )
                         }
