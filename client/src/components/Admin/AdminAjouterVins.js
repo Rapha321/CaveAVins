@@ -12,15 +12,69 @@ export default function AdminAjouterVins() {
   
     let navigate = useNavigate()
     const [regions, setRegions] = useState([]);
+    const [file, setFile] = useState(null);
+    const [regionId, setRegionId] = useState("");
 
     useEffect(() => {
-        let isMounted = true;
         fetch('/api/regions')
         .then(res => res.json())
-        .then(data => { if (isMounted) {setRegions(data)} })
+        .then(data => setRegions(data))
   
-        return () => {isMounted = false};
-      }, [])
+    }, [])
+
+
+    
+    const handleSelect = (e) => {
+        e.preventDefault()
+        Object.values(regions).map(region => {
+            if (e.target.value === region._id) {
+                setRegionId(region._id);
+            }
+        }) 
+    }
+
+
+
+    const addVins = async (e) => { 
+        e.preventDefault()
+
+        const {nom, descriptions, prix, quantity, imgVins} = e.target
+
+        const data = new FormData();
+        data.append("file", file[0])
+
+        axios.post(`/api/vins`, {
+            regionID: regionId,
+            nom: nom.value,
+            prix: prix.value,
+            quantity: quantity.value,
+            descrVins: descriptions.value,
+            imgVins: file[0].name
+
+        })
+        .then(res => {
+            console.log("mise a jour avec succes")
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+
+        axios.post(`http://localhost:5000/api/regions/uploads`, data)
+        .then(res => { 
+            console.log(res.statusText)
+        })
+
+        nom.value = "";
+        descriptions.value = "";
+        prix.value = "";
+        quantity.value = "";
+        imgVins.value = "";
+
+    }
+
+    const fileSelectedHandler = (e) => {
+        setFile(e.target.files)
+    }
 
       
     return (
@@ -28,47 +82,50 @@ export default function AdminAjouterVins() {
             <div style={{marginLeft: "20%"}}>
                 <h2 style={{textAlign: "left", marginTop: "3%", marginBottom: "3%"}}>Ajouter un Vins:</h2> 
             
-                <Form style={{textAlign: "left"}}>
+                <Form style={{textAlign: "left"}} onSubmit={e => addVins(e)}>
                     <Form.Group>
                         <Form.Input label='Nom du vins:' name="nom" placeholder='Nom' width={10} />
+                    </Form.Group>
 
-                    </Form.Group>
-                    <NativeSelect id="select" style={{width: "62%"}}>
-                            <option value="10" style={{color: "grey"}}>Dans quel region le vins est produit?</option>
-                            {
-                                Object.values(regions).map(region => {
-                                    return (
-                                        <option value={region._id}>{region.nomRegion}</option>
-                                    )
-                                    
-                                }) 
-                            }
-                            
-                        </NativeSelect><br/><br/>
+                    <NativeSelect id="select" style={{width: "62%"}} onChange={e => handleSelect(e)}>
+                        <option value="10" style={{color: "grey"}}>Dans quel region le vins est produit?</option>
+                        {
+                            Object.values(regions).map(region => {
+                                return (
+                                    <option value={region._id}>{region.nomRegion}</option>
+                                )
+                            }) 
+                        }
+                    </NativeSelect><br/><br/>
+
                     <Form.Group>
-                        <Form.TextArea label='Descriptions:' name="descriptions" placeholder='Descriptions:' width={10} style={{height: "100px"}}/>
+                        <Form.TextArea label='Descriptions:' 
+                                       name="descriptions" 
+                                       placeholder='Descriptions:' 
+                                       width={10} 
+                                       style={{height: "100px"}}/>
                     </Form.Group>
+
                     <Form.Group>
                         <Form.Input label='Prix:' name="prix" placeholder='$' width={5} />
                         <Form.Input label='Quantité:' name="quantity" placeholder='Quantité' width={5} />
                     </Form.Group>
+
                     <Form.Group>
                         <label htmlFor="contained-button-file">
-                            <Input accept="image/*" id="contained-button-file" multiple type="file" style={{width: "500px", marginRight: "20px"}}/>
-                            <Button variant="contained" component="span">
-                                Upload
-                                <IconButton color="primary" aria-label="upload picture" component="span">
-                                    <PhotoCamera />
-                                </IconButton>
-                            </Button>
+                            <Input accept="image/*" 
+                                   id="contained-button-file" 
+                                   name="imgVins"
+                                   multiple type="file" 
+                                   onChange={fileSelectedHandler} 
+                                   style={{width: "500px", marginRight: "20px"}} />
                         </label>
-
                     </Form.Group>
+
                     <br />
                     <Button color="green" style={{marginLeft: "15%"}}>Soumettre</Button>
                 </Form>
             </div>
         </Container>
     )
-
 }

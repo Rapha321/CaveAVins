@@ -1,9 +1,26 @@
 const express = require('express')
 const router = express.Router()
-
+const multer = require("multer");
+const app = express();
+const path = require('path')
 const Vins = require('../../models/Vins')
 
 router.get('/test', (req, res) => res.json({msg: 'backend works'}))
+
+const uploadFilePath = path.resolve(__dirname, '../../..', 'client/src/images/vins');
+
+const cors = require("cors");
+app.use(express.json());
+app.use(cors());
+
+var storage = multer.diskStorage({
+  destination: uploadFilePath,
+  filename: function (req, file, cb) {
+    cb(null, file.originalname )
+  }
+})
+
+var upload = multer({ storage: storage }).single('file');
 
 // @route GET /api/vins
 // @desc Get vins (public)
@@ -27,6 +44,15 @@ router.post('/', (req, res) => {
 
   newVins.save().then(info => res.json(info))
 })
+
+router.post('/uploads', function(req, res) {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+        return res.status(500).json(err)
+    } 
+    return res.status(200).send(req.file)
+  })
+});
 
 // @route DELETE /api/vins
 // @desc Delete vins (public)

@@ -58,7 +58,7 @@ export default function AdminSupprimerRegion() {
   return (
     <Container>  
       <div style={{marginLeft: "20%"}}>
-        <h2 style={{textAlign: "left", marginTop: "3%", marginBottom: "3%"}}>Modifier un Region:</h2> 
+        <h2 style={{textAlign: "left", marginTop: "3%", marginBottom: "3%"}}>Supprimer un Region:</h2> 
 
         <Form style={{textAlign: "left"}} onSubmit={e => supprimerRegion(e)}>
 

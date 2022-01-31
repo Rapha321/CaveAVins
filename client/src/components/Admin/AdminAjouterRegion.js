@@ -61,22 +61,36 @@ export default function AdminAjouterRegion() {
                 
                     <Form style={{textAlign: "left"}} encType="multipart/form-data"  onSubmit={e => addRegion(e)} >
                         <Form.Group>
-                            <Form.Input label='Nom region:' name="nom" placeholder='Nom region' width={10} />
+                            <Form.Input label='Nom region:' 
+                                        name="nom" 
+                                        placeholder='Nom region' 
+                                        width={10} />
                         </Form.Group>
+
                         <Form.Group>
-                            <Form.TextArea label='Descriptions:' name="descriptions" placeholder='Descriptions:' width={10} style={{height: "150px"}}/>
+                            <Form.TextArea label='Descriptions:' 
+                                           name="descriptions" 
+                                           placeholder='Descriptions:' 
+                                           width={10} 
+                                           style={{height: "150px"}}/>
                         </Form.Group>
+
                         <Form.Group>
                             <label htmlFor="file">
-                                <Input accept="image/*" id="contained-button-file" name="imgRegion" multiple type="file" onChange={fileSelectedHandler} style={{width: "500px", marginRight: "20px"}}/>
+                                <Input accept="image/*" 
+                                       id="contained-button-file" 
+                                       name="imgRegion" 
+                                       multiple type="file" 
+                                       onChange={fileSelectedHandler} 
+                                       style={{width: "500px", marginRight: "20px"}} />
                             </label>
                         </Form.Group>
+
                         <br />
                         <Button color="green" type="submit" style={{marginLeft: "15%"}}>Ajouter</Button>
                     </Form>
                 </div>
             </Container>
-
 
         </div>
     )
