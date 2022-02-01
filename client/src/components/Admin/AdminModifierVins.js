@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Container } from 'react-bootstrap';
-import { Form, TextArea, Button, Icon } from 'semantic-ui-react'
-import { Input, NativeSelect } from '@mui/material';
-import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import { Form, Button } from 'semantic-ui-react'
+import { NativeSelect } from '@mui/material';
+import { toast } from 'react-toastify';
 
 
 export default function AdminModifierVins() {
@@ -18,6 +18,7 @@ export default function AdminModifierVins() {
   const [qty, setQty] = useState("");
 
 
+  // Set regions and vins when page is loaded
   useEffect(() => {
       fetch('/api/regions')
       .then(res => res.json())
@@ -30,6 +31,7 @@ export default function AdminModifierVins() {
   }, [])
 
 
+  // Set vinsId, nomVins, descrVins, prix and Qty when a Vins is selected in the form
   const handleSelectVins = (e) => {
     e.preventDefault()
     Object.values(vins).map(vin => {
@@ -43,7 +45,8 @@ export default function AdminModifierVins() {
     }) 
   }
 
-
+  
+  // Set regionId when a region is selected in the form
   const handleSelectRegion = (e) => {
     e.preventDefault()
     Object.values(regions).map(region => {
@@ -54,16 +57,19 @@ export default function AdminModifierVins() {
   }
 
 
+  // Modify vins in database
   const modifierVins = (e) => {
     e.preventDefault()
 
+    // Get input data from form
     const {newNom, newDescr, newPrix, newQty} = e.target
 
+    // Update vins in database
     axios.post(`/api/vins/update/${vinsId}`, {
         nom: newNom.value, 
-        descrVins: newDescr.value,
         prix: newPrix.value,
-        quantity: newQty.value
+        quantity: newQty.value,
+        descrVins: newDescr.value
     })
     .then(res => {
         console.log("mise a jour avec succes")
@@ -72,11 +78,13 @@ export default function AdminModifierVins() {
         console.log(err.response)
     })
 
+    // Reset form fields to empty
     newNom.value = "";
     newDescr.value = "";
     newPrix.value = "";
     newQty.value = "";
 
+    // Display toast
     toast.success('🦄 Vins modifier avec success!', {
       toastId: 'info1',
       position: "top-right",
@@ -91,6 +99,7 @@ export default function AdminModifierVins() {
 
 
   return (
+    // FORM TO MODIFY VINS
     <Container>  
       <div style={{marginLeft: "20%"}}>
         <h2 style={{textAlign: "left", marginTop: "3%", marginBottom: "3%"}}>Modifier un Vins:</h2> 

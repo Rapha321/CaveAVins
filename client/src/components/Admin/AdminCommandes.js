@@ -1,18 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import { Router, useNavigate, useParams } from "react-router-dom"
 import { Button } from 'semantic-ui-react'
-import { Navbar, Container, Table } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 import axios from 'axios';
 import AdminHeader from './AdminHeader'
 
 
-
 export default function AdminCommandes() {
 
-    let navigate = useNavigate()
     const [commandes, setCommandes] = useState([])
 
-
+    // Set commandes when page is loaded
     useEffect(() => {
         let isMounted = true;
         fetch('/api/commandes')
@@ -23,9 +20,8 @@ export default function AdminCommandes() {
     }, [])
 
 
-
+    // Set commande status to "En route" in database
     const commandeEnRoute = (commandeRef, vinsRef) => {
-
         commandes.map(commande => {
             Object.values(commande.item).map(vin => {
                 if (commande._id === commandeRef && vin.vinsID === vinsRef) {
@@ -41,13 +37,11 @@ export default function AdminCommandes() {
                 }
             })
         })
-
         getCommandes()
-    
     }
 
+    // Set commande status to "Livré" in database
     const commandeLivrer = (commandeRef, vinsRef) => {
-
         commandes.map(commande => {
             Object.values(commande.item).map(vin => {
                 if (commande._id === commandeRef && vin.vinsID === vinsRef) {
@@ -63,9 +57,7 @@ export default function AdminCommandes() {
                 }
             })
         })
-
         getCommandes()
-    
     }
 
     // Read
@@ -82,6 +74,7 @@ export default function AdminCommandes() {
 
             <h2 style={{textAlign: "left", marginTop: "3%", marginBottom: "3%"}}>Gestion de commandes:</h2>  
 
+            {/* TABLE DISPLAY ALL ORDERS */}
             <Table striped bordered hover size="md">
                 <thead>
                     <tr>

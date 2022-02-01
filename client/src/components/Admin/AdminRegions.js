@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import { Router, useNavigate, useParams } from "react-router-dom"
-import { Navbar, Container } from 'react-bootstrap';
-import { Form, TextArea, Button, Icon, Tab } from 'semantic-ui-react'
+import React from 'react'
+import { Container } from 'react-bootstrap';
+import { Tab } from 'semantic-ui-react'
 import AdminModifierRegion from './AdminModifierRegion';
 import AdminSupprimerRegion from './AdminSupprimerRegion';
 import AdminAjouterRegion from './AdminAjouterRegion';
@@ -9,9 +8,7 @@ import AdminHeader from './AdminHeader'
 
 export default function AdminRegions() {
 
-    let navigate = useNavigate()
-
-
+    // Create tabs for Ajouter, Modifier, and Supprimer
     const panes = [
         {
             menuItem: 'Ajouter',
@@ -35,5 +32,4 @@ export default function AdminRegions() {
 
           </Container>
        )
-
 }

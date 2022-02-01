@@ -44,7 +44,6 @@ const CombineLoginSignup=()=>{
           aria-label="disabled tabs example"
         >
           <Tab label="Connexion" />
-         
           <Tab label="Enregistrer" />
         </Tabs>
         <TabPanel value={value} index={0}>

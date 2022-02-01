@@ -1,26 +1,31 @@
 import React from 'react'
-import { Button, Tab } from 'semantic-ui-react'
-import { Navbar, Container } from 'react-bootstrap';
-import { Router, useNavigate, useParams } from "react-router-dom"
+import { Button } from 'semantic-ui-react'
+import { Container } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom"
 import AdminHeader from './AdminHeader'
 
 export default function Admin() {
 
     let navigate = useNavigate()
 
+    // Redirect to Admin Region page
     const gestionRegion = () => {
         navigate(`/adminRegions`)
     }
 
+    // Redirect to Admin Vins page
     const ajouterVins = () => {
         navigate(`/adminVins`)
     }
 
+    // Redirect to Admin Commandes page
     const gererCommandes = () => {
         navigate(`/adminCommandes`)
     }
 
     return (
+
+        // MENU ADMINISTRATEUR
         <Container>
 
             <AdminHeader />

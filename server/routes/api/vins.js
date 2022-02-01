@@ -71,6 +71,7 @@ router.post('/update/:id', (req, res) => {
       $set: {
         nom: req.body.nom,
         prix: req.body.prix,
+        descrVins: req.body.descrVins,
         quantity: req.body.quantity
       },
     },

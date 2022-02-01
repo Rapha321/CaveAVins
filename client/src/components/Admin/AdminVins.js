@@ -1,12 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import { Router, useNavigate, useParams } from "react-router-dom"
-import { Navbar, Container } from 'react-bootstrap'
-import { Form, TextArea, Button, Icon, Tab } from 'semantic-ui-react'
-import IconButton from '@mui/material/IconButton'
-import PhotoCamera from '@mui/icons-material/PhotoCamera'
-import Stack from '@mui/material/Stack'
-import { Input, NativeSelect } from '@mui/material'
+import React from 'react'
+import { Container } from 'react-bootstrap'
+import { Tab } from 'semantic-ui-react'
 import AdminAjouterVins from './AdminAjouterVins'
 import AdminModifierVins from './AdminModifierVins'
 import AdminSupprimerVins from './AdminSupprimerVins'
@@ -14,8 +8,7 @@ import AdminHeader from './AdminHeader'
 
 export default function AdminVins() {
 
-    let navigate = useNavigate()
-
+    // Create tabs for Ajouter, Modifier, and Supprimer
     const panes = [
         {
             menuItem: 'Ajouter',

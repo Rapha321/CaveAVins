@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { Button, Tab } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import { Navbar, Container } from 'react-bootstrap';
-import { Router, useNavigate, useLocation } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 
 export default function Admin() {
 
@@ -11,6 +11,7 @@ export default function Admin() {
     const [btnMenuStyle, setBtnMenuStyle] = useState("none")
 
 
+    // Hide Menu button when user is on Acceuil page and admin page
     useEffect(() => {
         location.pathname === '/' ? setLogoutStyle("none") : setLogoutStyle("block")
 
@@ -21,13 +22,14 @@ export default function Admin() {
         }
     }, [location])
 
-
+    // Navigate to Acceuil page when Sign-out button is clicked
     const signout = () => {
         navigate(`/`)
     }
 
     return (
         <div>
+            {/* NAVBAR */}
             <Navbar>
                 <Container>
                     <Navbar.Brand href="#home"><h1><strong>Cave à Vins</strong></h1></Navbar.Brand>

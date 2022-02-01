@@ -1,21 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { Router, useNavigate, useParams } from "react-router-dom"
-import { Navbar, Container } from 'react-bootstrap';
-import { Form, TextArea, Button, Icon } from 'semantic-ui-react'
-import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import Stack from '@mui/material/Stack';
+import { Container } from 'react-bootstrap';
+import { Form, Button } from 'semantic-ui-react'
 import { Input, NativeSelect } from '@mui/material';
-import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export default function AdminAjouterVins() {
   
-    let navigate = useNavigate()
     const [regions, setRegions] = useState([]);
     const [file, setFile] = useState(null);
     const [regionId, setRegionId] = useState("");
 
+
+    // Set regions when page is loaded
     useEffect(() => {
         fetch('/api/regions')
         .then(res => res.json())
@@ -24,7 +21,7 @@ export default function AdminAjouterVins() {
     }, [])
 
 
-    
+    // Set regionId when a region is selected
     const handleSelect = (e) => {
         e.preventDefault()
         Object.values(regions).map(region => {
@@ -35,15 +32,18 @@ export default function AdminAjouterVins() {
     }
 
 
-
+    // Add vins when Ajouter button is clicked
     const addVins = async (e) => { 
         e.preventDefault()
 
+        // Get data from form
         const {nom, descriptions, prix, quantity, imgVins} = e.target
 
+        // Save picture file in data variable
         const data = new FormData();
         data.append("file", file[0])
 
+        // Create new region in database 
         axios.post(`/api/vins`, {
             regionID: regionId,
             nom: nom.value,
@@ -60,17 +60,20 @@ export default function AdminAjouterVins() {
             console.log(err.response)
         })
 
-        axios.post(`http://localhost:5000/api/regions/uploads`, data)
+        // Save image in database
+        axios.post(`http://localhost:5000/api/vins/uploads`, data)
         .then(res => { 
             console.log(res.statusText)
         })
 
+        // Reset input field to empty
         nom.value = "";
         descriptions.value = "";
         prix.value = "";
         quantity.value = "";
         imgVins.value = "";
 
+        // Display a toast
         toast.success('🦄 Vins ajouter avec success!', {
             toastId: 'info1',
             position: "top-right",
@@ -84,12 +87,15 @@ export default function AdminAjouterVins() {
 
     }
 
+    // Save image file
     const fileSelectedHandler = (e) => {
         setFile(e.target.files)
     }
 
       
     return (
+        <div>
+        {/* FORM TO ADD A NEW VINS */}
         <Container>  
             <div style={{marginLeft: "20%"}}>
                 <h2 style={{textAlign: "left", marginTop: "3%", marginBottom: "3%"}}>Ajouter un Vins:</h2> 
@@ -139,5 +145,6 @@ export default function AdminAjouterVins() {
                 </Form>
             </div>
         </Container>
+        </div>
     )
 }

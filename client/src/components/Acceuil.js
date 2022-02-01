@@ -7,14 +7,18 @@ import zoneLivraison from '../images/zone-livraison.jpg'
 import hrImage from "../images/hr-Img.jpeg"
 import wineCollections from "../images/wineCollections.jpg"
 import wineGlasses from "../images/wineGlass.jpg"
+import Signup from './Signup';
 
 export default function Acceuil() {
 
     return (
-        <Container >
 
+        // PAGE ACCEUIL
+        <Container >
+            
             <Header/>
 
+            {/* Section Message de bienvenue */}
             <div className='acceuil' style={{margin: "60px auto", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "50vw", textAlign: "left"}}>
                     <h1 style={{width: "40vw", 
@@ -40,11 +44,13 @@ export default function Acceuil() {
                         terroir. On se fait d'ailleurs littéralement remercier par les vignobles 
                         de rendre les produits disponibles en ligne.
                     </h3>
-                    
                 </div>
+
+                {/* Section Signup et Login */}
                 <CombineLoginSignup />
             </div>
 
+            {/* Ligne horizontal */}
             <hr style={{  border: "0",
                           height: "45px",
                           backgroundImage: `url(${hrImage})`,
@@ -52,6 +58,7 @@ export default function Acceuil() {
                           backgroundRepeat: "repeat"
                           }}/>
 
+            {/* Zone de livraison */}
             <div style={{margin: "100px auto"}}>
                 <h2>ZONE DE LIVRAISON</h2>   
                 <br/>             
@@ -63,6 +70,7 @@ export default function Acceuil() {
                 </h5>
             </div>
 
+            {/* Ligne horizontal */}
             <hr style={{  border: "0",
                           height: "45px",
                           backgroundImage: `url(${hrImage})`,
@@ -71,6 +79,7 @@ export default function Acceuil() {
                           color: "green"
                           }}/>
 
+            {/* Images et message informationnel */}
             <div style={{display: "flex", flexDirection: "column", margin: "100px auto", width: "80%" }}>
                 <div style={{display: "flex", marginBottom: "30px"}}>
                     <div>

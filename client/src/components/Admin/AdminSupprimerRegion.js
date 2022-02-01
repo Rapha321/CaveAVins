@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Container } from 'react-bootstrap';
-import { Form, TextArea, Button, Icon } from 'semantic-ui-react'
-import { Input, NativeSelect } from '@mui/material';
-import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import { Form, Button } from 'semantic-ui-react'
+import { NativeSelect } from '@mui/material';
+import { toast } from 'react-toastify';
 
 export default function AdminSupprimerRegion() {
 
@@ -13,6 +13,7 @@ export default function AdminSupprimerRegion() {
     const [descr, setDescr] = useState("");
 
 
+    // Set regions when page is loaded
     useEffect(() => {
         let isMounted = true;
         fetch('/api/regions')
@@ -23,9 +24,9 @@ export default function AdminSupprimerRegion() {
     }, [])
 
 
+    // Set id, nom and descr when a region is selected in the form
     const handleSelect = (e) => {
       e.preventDefault()
-
       Object.values(regions).map(region => {
         if (e.target.value === region._id) {
           setId(region._id);
@@ -33,11 +34,13 @@ export default function AdminSupprimerRegion() {
           setDescr(region.descrRegion)
         }
       }) 
-    
     }
 
 
+    // Method to delete region from database
     const supprimerRegion = async () => {
+
+      // Delete selected region from database
       await axios({
           method: 'DELETE',
           url: `/api/regions`,
@@ -51,9 +54,12 @@ export default function AdminSupprimerRegion() {
       .catch(err => {
           console.log(err.response)
       })
+
+      // Reset form field to empty
       setNom("")
       setDescr("")
 
+      // Display toast
       toast.success('🦄 Region supprimer avec success!', {
         toastId: 'info1',
         position: "top-right",
@@ -68,6 +74,7 @@ export default function AdminSupprimerRegion() {
 
 
   return (
+    // FORM TO DELETE A REGION
     <Container>  
       <div style={{marginLeft: "20%"}}>
         <h2 style={{textAlign: "left", marginTop: "3%", marginBottom: "3%"}}>Supprimer un Region:</h2> 
