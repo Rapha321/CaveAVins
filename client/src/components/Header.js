@@ -20,6 +20,7 @@ export default function Header(props) {
         location.pathname === '/' ? setStyle("none") : setStyle("block")
     }, [location])
 
+    
     useEffect(() => {
         let isMounted = true;
         fetch('/api/commandes')

@@ -7,6 +7,8 @@ import Box from '@material-ui/core/Box';
 import Login from '../components/Login'
 import Signup from '../components/Signup' 
 
+
+// Combining Signin and Signup section
 const CombineLoginSignup=()=>{
     const [value,setValue]=useState(0)
     const handleChange = (event, newValue) => {
@@ -35,7 +37,7 @@ const CombineLoginSignup=()=>{
   }
   
     return (
-        <Paper elevation={20} style={paperStyle}>
+      <Paper elevation={20} style={paperStyle}>
         <Tabs
           value={value}
           indicatorColor="primary"
@@ -43,15 +45,17 @@ const CombineLoginSignup=()=>{
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          <Tab label="Connexion" />
-          <Tab label="Enregistrer" />
+            <Tab label="Connexion" />
+            <Tab label="Enregistrer" />
         </Tabs>
+        
         <TabPanel value={value} index={0}>
-       <Login handleChange={handleChange}/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <Signup/>
-      </TabPanel>
+          <Login handleChange={handleChange}/>
+        </TabPanel>
+        
+        <TabPanel value={value} index={1}>
+          <Signup/>
+        </TabPanel>
       </Paper>
       
     )
