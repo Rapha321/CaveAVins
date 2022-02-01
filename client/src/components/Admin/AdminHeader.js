@@ -30,7 +30,7 @@ export default function Admin() {
         <div>
             <Navbar>
                 <Container>
-                    <Navbar.Brand href="#home"><h1>Cave à Vins</h1></Navbar.Brand>
+                    <Navbar.Brand href="#home"><h1><strong>Cave à Vins</strong></h1></Navbar.Brand>
                     <Navbar.Toggle />
                 </Container>
 

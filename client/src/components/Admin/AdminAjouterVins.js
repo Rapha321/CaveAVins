@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 import { Input, NativeSelect } from '@mui/material';
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 
 export default function AdminAjouterVins() {
   
@@ -70,6 +71,17 @@ export default function AdminAjouterVins() {
         quantity.value = "";
         imgVins.value = "";
 
+        toast.success('🦄 Vins ajouter avec success!', {
+            toastId: 'info1',
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
     }
 
     const fileSelectedHandler = (e) => {
@@ -123,7 +135,7 @@ export default function AdminAjouterVins() {
                     </Form.Group>
 
                     <br />
-                    <Button color="green" style={{marginLeft: "15%"}}>Soumettre</Button>
+                    <Button color="green" style={{marginLeft: "15%"}}>Ajouter</Button>
                 </Form>
             </div>
         </Container>

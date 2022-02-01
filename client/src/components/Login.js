@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-// import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom'
-import Regions from './Regions';
-import { Router, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 

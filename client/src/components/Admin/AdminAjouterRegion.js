@@ -4,6 +4,7 @@ import { Router, useNavigate, useParams } from "react-router-dom"
 import { Navbar, Container } from 'react-bootstrap';
 import { Form, TextArea, Button, Input } from 'semantic-ui-react'
 import CombineLoginSignup from './../CombineLoginSignup';
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 
 
 export default function AdminAjouterRegion() {
@@ -46,6 +47,17 @@ export default function AdminAjouterRegion() {
         nom.value = "";
         descriptions.value = "";
         imgRegion.value = "";
+
+        toast.success('🦄 Region ajouter avec success!', {
+            toastId: 'info1',
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
 
     }
 

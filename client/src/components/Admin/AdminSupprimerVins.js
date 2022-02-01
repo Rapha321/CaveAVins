@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Container } from 'react-bootstrap';
 import { Form, TextArea, Button, Icon } from 'semantic-ui-react'
 import { Input, NativeSelect } from '@mui/material';
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 
 export default function AdminSupprimerVins() {
 
@@ -70,6 +71,18 @@ export default function AdminSupprimerVins() {
     setDescrVins("")
     setPrix("");
     setQty("");
+
+    toast.success('🦄 Vins supprimer avec success!', {
+      toastId: 'info1',
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
 }
 
 
@@ -136,7 +149,7 @@ export default function AdminSupprimerVins() {
         </Form.Group>
         
         <br />
-        <Button color="red" style={{marginLeft: "15%"}}>Modifier</Button>
+        <Button color="red" style={{marginLeft: "15%"}}>Supprimer</Button>
       </Form>
 
     </div>

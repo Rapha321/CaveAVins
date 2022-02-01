@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Router, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Container, Form, Step, Button, Icon } from 'semantic-ui-react'
 import Header from '../components/Header'
 

@@ -30,6 +30,8 @@ const Signup = () => {
         })
         email.value = ""
         password.value = ""
+        nom.value = ""
+        prenom.value = ""
         getClients()
 
     }

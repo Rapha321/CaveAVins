@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Navbar, Container } from 'react-bootstrap';
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import Commande from './Commande';
-import { Button, Icon, Image, Modal } from 'semantic-ui-react'
+import { Button, Icon, Modal } from 'semantic-ui-react'
 
 
 export default function Header(props) {
@@ -14,6 +13,7 @@ export default function Header(props) {
     const [style, setStyle] = useState("block")
     const [open, setOpen] = useState(false)
     const [commandes, setCommandes] = useState([])
+    const [nomClient, setNomClient] = useState("")
 
 
     useEffect(() => {
@@ -25,6 +25,15 @@ export default function Header(props) {
         fetch('/api/commandes')
             .then(res => res.json())
             .then(data => { if (isMounted) {setCommandes(data)} })
+
+        fetch('/api/clients')
+            .then(res => res.json())
+            .then(data => data.map(client => {
+                if (client._id === clientID) {
+                    setNomClient(`${client.prenom} ${client.nom}`)
+                }
+            }) ) 
+
         return () => {isMounted = false};
     }, [])
 
@@ -41,7 +50,10 @@ export default function Header(props) {
     return (
         <Navbar>
             <Container>
-                <Navbar.Brand href="#home"><h1>Cave à Vins</h1></Navbar.Brand>
+                <img src={require(`../images/logo.png`)} style={{width: "40px", marginRight: "10px"}}/>
+                <Navbar.Brand href="#home"><h1 style={{color: "#ff1493"}}><strong>Cave à Vins</strong></h1></Navbar.Brand>
+
+                <span style={{display: style, marginTop: "10px", bottom: "0"}}> de <strong>{nomClient}</strong></span>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text style={{display: style === "block" ? "flex" : "none"}}>

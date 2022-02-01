@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Container } from 'react-bootstrap';
 import { Form, TextArea, Button, Icon } from 'semantic-ui-react'
 import { Input, NativeSelect } from '@mui/material';
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 
 export default function AdminSupprimerRegion() {
 
@@ -52,6 +53,17 @@ export default function AdminSupprimerRegion() {
       })
       setNom("")
       setDescr("")
+
+      toast.success('🦄 Region supprimer avec success!', {
+        toastId: 'info1',
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
   }
 
 
