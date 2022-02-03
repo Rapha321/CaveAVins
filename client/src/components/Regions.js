@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header';
-import { Button } from 'react-bootstrap';
 import { Container } from "semantic-ui-react";
 import { useNavigate, useParams } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 
 export default function Regions() {
 
@@ -11,22 +9,22 @@ export default function Regions() {
     let navigate = useNavigate();
     let {clientID} = useParams()
 
+    // Set regions and vins when page is loaded
     useEffect(() => {
         fetch('/api/regions')
             .then(res => res.json())
             .then(data => setRegions(data))
     }, []) 
 
-
+    // Redirect to 'vins par region' when a region is clicked
     const afficherVins = (vinsID) => {
         navigate(`/vinsParRegion/${vinsID}/${clientID}`)
     }
 
 
     return (
-        <Container>
+        <Container >
             <Header client={clientID}/>
-
             <p style={{ marginTop: "5%", 
                         marginLeft: "15px", 
                         fontFamily: 'Island Moments', 
@@ -36,6 +34,8 @@ export default function Regions() {
                         color: "teal"}}>
                 Découvrir ce que nos vignobles ont à vous offrir:
             </p>
+
+            {/* DISPLAY ALL THE REGIONS  */}
             <Container style={{display: "flex", flexWrap: "wrap", margin: "30px auto", justifyContent: "space-around"}}>
                 {regions.map(region => 
                     

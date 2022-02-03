@@ -16,11 +16,13 @@ export default function Header(props) {
     const [nomClient, setNomClient] = useState("")
 
 
+    // Set display to hidden in the Navbar when user is not loggedin
     useEffect(() => {
         location.pathname === '/' ? setStyle("none") : setStyle("block")
     }, [location])
 
-    
+
+    // Set commandes and loggedin client's name when page is loaded
     useEffect(() => {
         let isMounted = true;
         fetch('/api/commandes')
@@ -39,26 +41,33 @@ export default function Header(props) {
     }, [])
 
 
+    // Redirect to client's cart when cart icon is clicked
     const afficherPanier = () => {
         navigate(`/panier/${props.client}`)
     }
 
+    // Redirect to Acceuil page when logout icon is clicked
     const signout = () => {
         navigate(`/`)
     }
 
 
     return (
+
+        // NAVBAR
         <Navbar>
             <Container>
+                {/* Display logo */}
                 <img src={require(`../images/logo.png`)} style={{width: "40px", marginRight: "10px"}}/>
                 <Navbar.Brand href="#home"><h1 style={{color: "#ff1493"}}><strong>Cave à Vins</strong></h1></Navbar.Brand>
 
+                {/* Display the name of client who is logged in */}
                 <span style={{display: style, marginTop: "10px", bottom: "0"}}> de <strong>{nomClient}</strong></span>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text style={{display: style === "block" ? "flex" : "none"}}>
 
+                    {/* Display list of orders when "Mes commandes" button is clicked */}
                     <Modal
                         open={open}
                         onClose={() => setOpen(false)}
@@ -111,7 +120,6 @@ export default function Header(props) {
                                     })}
                                 </tbody>
                             </table>
-                          
                         </Modal.Content>
                         <Modal.Actions>
                             <Button onClick={() => setOpen(false)} primary>
@@ -119,11 +127,13 @@ export default function Header(props) {
                             </Button>
                         </Modal.Actions>
                     </Modal>
-
+                    
+                    {/* Cart icon */}
                     <span onClick={afficherPanier} style={{ display: style, color: "springgreen" }}>
                         <i class="fas fa-2x fa-cart-arrow-down"></i>
                     </span>
-
+                    
+                    {/* Logout icon */}
                     <span onClick={signout} style={{ display: style, color: "red", marginLeft: "20px" }}>
                         <i class="fas fa-2x fa-sign-out-alt"></i>
                     </span>

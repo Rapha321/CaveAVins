@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import Header from '../components/Header';
 import CombineLoginSignup from './CombineLoginSignup'
-import bienvenue from '../images/bienvenue.jpg'
+import bienvenue from '../images/banner_acceuil.jpg'
 import zoneLivraison from '../images/zone-livraison.jpg'
 import hrImage from "../images/hr-Img.jpeg"
 import wineCollections from "../images/wineCollections.jpg"

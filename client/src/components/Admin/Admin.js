@@ -32,19 +32,22 @@ export default function Admin() {
 
             <h1 style={{margin: "5% auto"}}>Menu Administrateur</h1>
 
-            <Button size='massive' 
+            <Button size='massive'
+                    color='blue' 
                     style={{width: "30%", marginBottom: "10px"}}
                     onClick={gestionRegion}>
                 Gestion des regions
             </Button>
             <br/>
             <Button size='massive' 
+                    color='blue' 
                     style={{width: "30%", marginBottom: "10px"}}
                     onClick={ajouterVins}>
                 Gestion du vins
             </Button>
             <br/>
-            <Button size='massive' 
+            <Button size='massive'
+                    color='blue'  
                     style={{width: "30%", marginBottom: "10px"}}
                     onClick={gererCommandes}>
                 Gestion des commandes

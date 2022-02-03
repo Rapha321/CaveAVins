@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useBootstrapPrefix } from 'react-bootstrap/esm/ThemeProvider';
-import { Router, useNavigate, useParams } from "react-router-dom"
-import { Button, Container, Input } from 'semantic-ui-react'
-import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import { useNavigate, useParams } from "react-router-dom"
+import { Button, Container } from 'semantic-ui-react'
+import { toast } from 'react-toastify';
 import Header from '../components/Header';
 
 
@@ -12,9 +11,8 @@ export default function VinsIndividuel() {
     let {vinsID, clientID} = useParams()
     let navigate = useNavigate()
     const [vins, setVins] = useState([])
-    const [paniers, setPaniers] = useState([]);
 
-
+    // Set vins when page is loaded
     useEffect(() => {
         let isMounted = true;
         fetch('/api/vins')
@@ -25,6 +23,7 @@ export default function VinsIndividuel() {
     }, []) 
 
 
+    // Add a Vins in Panier in the database
     const ajouterPanier = async (e) => {
         e.preventDefault()
 
@@ -33,6 +32,7 @@ export default function VinsIndividuel() {
         const res = await axios.get('/api/paniers')
         const data = res.data
         data.map(x => {
+            // If vins alreay exist in Cart, display a toast to notify user
             if (x.clientID === clientID && x.vinsID === vinsID) {
                 toast.info('🦄 Ce vins existe deja dans votre panier!', {
                     toastId: 'info1',
@@ -53,26 +53,20 @@ export default function VinsIndividuel() {
                 clientID: clientID,
                 vinsID: vinsID
             })
-    
-            getPaniers()
             navigate(`/panier/${clientID}`)
         }
-
     }
 
-    // Read
-    const getPaniers = async () => {
-        const res = await axios.get('/api/paniers')
-        const data = res.data
-        setPaniers(data)
-    }
 
+    // Navigate to Main Regions page when 'Voir les regions' button is clicked
     const afficherRegions = () => {
         navigate(`/regions/${clientID}`)
     }
 
 
     return (
+
+        // DISPLAY DETAILS ABOUT A VINS WITH AN 'ADD TO CART BUTTON'
         <Container style={{marginTop: "50px"}}>
 
             <Header client={clientID}/>
@@ -119,6 +113,5 @@ export default function VinsIndividuel() {
             })}
 
         </Container>
-
     )
 }

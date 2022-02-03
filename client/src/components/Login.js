@@ -13,7 +13,7 @@ const Login=({handleChange})=>{
     
     let navigate = useNavigate();
 
-    // Signin
+    // SIGN IN FUNCTION
     const onSubmitSignIn = async e => {
         
         e.preventDefault()
@@ -24,9 +24,12 @@ const Login=({handleChange})=>{
 
         data.map(user => {
 
+            // If credential match admin, redirect to admin page
             if (email.value === "admin@email.com" && password.value === "admin") {
                 navigate(`/admin`)
             }
+
+            // else redirect to clients page
             else if (user.email === email.value && user.password === password.value) {
                 navigate(`/regions/${user._id}`)
             }
@@ -34,6 +37,8 @@ const Login=({handleChange})=>{
         })
     }
 
+    
+    // DISPLAY SIGN IN FORM
     return(
         <Grid>
             <br/>

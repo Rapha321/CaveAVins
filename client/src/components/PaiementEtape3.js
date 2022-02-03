@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Button, Modal } from 'react-bootstrap';
-import { Router, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Container, Step } from 'semantic-ui-react'
 import Header from '../components/Header';
 
@@ -10,15 +10,15 @@ export default function PaiementEtape3() {
 
     let navigate = useNavigate()
     let {clientID, sousTotal} = useParams()
+
     const [paniers, setPaniers] = useState([])
     const [clients, setClients] = useState([])
     const [vins, setVins] = useState([])
     const [commandes, setCommandes] = useState([])
-
-
     const [show, setShow] = useState(false);
 
 
+    // Set clients, paniers and vins when page is loaded
     useEffect(() => {
       let isMounted = true;
 
@@ -38,6 +38,7 @@ export default function PaiementEtape3() {
     }, [])
 
 
+    // After cart item is processed (converted into an order), delete item in cart
     const supprimerPannier = async (panierId) => {
       await axios({
           method: 'DELETE',
@@ -55,14 +56,15 @@ export default function PaiementEtape3() {
       await getPaniers()
     }
 
-    // Read
+
+    // Fetch updated panier info from database
     const getPaniers = async () => {
       const res = await axios.get('/api/paniers')
       const data = res.data
       setPaniers(data)
     }
 
-
+    // Function to create an order
     const creerCommande = async () => { 
       let item = [];
 
@@ -83,6 +85,7 @@ export default function PaiementEtape3() {
         }
       })
 
+      // create order in database
       await axios.post(`/api/commandes`, {
           date: Date, 
           clientID: clientID, 
@@ -99,14 +102,14 @@ export default function PaiementEtape3() {
       getCommandes()
     }
 
-    // Read
+    // Fetch updated commandes info from database
     const getCommandes = async () => {
         const res = await axios.get('/api/commandes')
         const data = res.data
         setCommandes(data)
     }
 
-
+    // Redirect to main region page when client close confirmation pop-up message
     const handleClose = () => {
         setShow(false) 
 
@@ -121,10 +124,12 @@ export default function PaiementEtape3() {
 
     const handleShow = () => setShow(true);
 
+    // Redirect to Step 2 of the payment process when "Retour-Etape 2" button is clicked
     const handleRetour = () => { 
       navigate(`/paiementEtape2/${clientID}/${sousTotal}`)
      }
 
+    // Function to display steps involved in the payment process
     const StepExampleOrdered = () => (
       <Step.Group ordered>
         <Step completed>
@@ -155,12 +160,15 @@ export default function PaiementEtape3() {
       height: "40px",
     }
 
+
     return (
       <Container style={{margin: "20px 20px", width: "100vw"}} >
 
         <Header client={clientID}/>
 
         <div style={{display: "flex", justifyContent: "center", marginTop: "5%"}}>
+
+          {/* FORMS FOR STEP 3 OF PAYMENT */}
           <div className='jumbotron' >
               <h1>Paiement</h1>
               {StepExampleOrdered()}
@@ -181,7 +189,7 @@ export default function PaiementEtape3() {
                           </tr>
                           <tr>
                             <td style={styles}><h5>Adresse de livraison:</h5></td>
-                            <td align='left'><strong>{client.adresse}</strong></td>
+                            <td align='left'><strong>{`${client.adresse}, ${client.ville} ${client.province}, ${client.codePostal}`}</strong></td>
                           </tr>
                           <tr>
                             <td style={styles}><h5>Montant total:</h5></td>
@@ -194,12 +202,13 @@ export default function PaiementEtape3() {
                 })
               }
               <br/><br/>
-              <Button variant='secondary' style={{width: "90px"}} onClick={handleRetour}>Retours</Button>
+              <Button variant='secondary' style={{width: "130px"}} onClick={handleRetour}>Retours - Etape 2</Button>
 
               <Button variant="success" onClick={() => {creerCommande(); handleShow();}} style={{width: "90px", marginLeft: "155px"}}>
                 Confirmer
               </Button>
 
+              {/* Message de confirmation que le commande a etais passer */}
               <Modal
                 show={show}
                 onHide={handleClose}
@@ -221,6 +230,7 @@ export default function PaiementEtape3() {
 
           </div>
 
+          {/* SUMMARY OF ITEM BEING ORDERED */}
           <div style={{marginLeft: "5vw", maxHeight: "60vh", overflowX: "auto"}} >
             {paniers.map(panier => {
               return (

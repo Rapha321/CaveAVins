@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
-import { Router, useNavigate, useParams } from "react-router-dom"
 import { Grid, Paper, Avatar, Typography, TextField, Button } from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
@@ -8,15 +7,8 @@ const Signup = () => {
     const paperStyle = { padding: 20, width: 320, height:330, margin: "0 auto" }
     const headerStyle = { margin: 0 }
     const avatarStyle = { backgroundColor: '#1bbd7e', marginRight: "10px", marginLeft: "20px" }
-    let navigate = useNavigate();
 
-    const [clients, setClients] = useState([]);
-
-    useEffect(() => {
-        getClients();
-      }, []);
-
-    // Register
+    // Insert a new user in the database
     const onSubmitRegister = async e => {
         
         e.preventDefault()
@@ -32,22 +24,12 @@ const Signup = () => {
         password.value = ""
         nom.value = ""
         prenom.value = ""
-        getClients()
-
-    }
-
-
-      // Read
-    const getClients = async () => {
-        const res = await axios.get('/api/clients')
-        const data = res.data
-
-        setClients(data)
     }
 
     return (
         <Grid>
             <br/>
+            {/* SIGN UP FORM */}
             <Paper style={paperStyle}>
                 <Grid align='center'>
                     <div style={{display: "flex"}}>

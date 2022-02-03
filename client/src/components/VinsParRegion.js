@@ -11,12 +11,14 @@ export default function VinsParRegion() {
     const [regions1, setRegions1] = useState([]);
     const [vins, setVins] = useState([]);
 
+    // Set Regions when page is loaded
     useEffect(() => {
         fetch('/api/regions')
             .then(res => res.json())
             .then(data => setRegions1(data))
     }, []) 
 
+    // Set Vins when page is loaded
     useEffect(() => {
         fetch('/api/vins')
             .then(res => res.json())
@@ -24,10 +26,12 @@ export default function VinsParRegion() {
     }, []) 
 
 
+    // Redirect to individual Vins page
     const afficherVinsIndividuel = (vinsID) => {
         navigate(`/vinsIndividuel/${vinsID}/${clientID}`)
     }
 
+    // Redirect to all regions page
     const afficherRegions = () => {
         navigate(`/regions/${clientID}`)
     }
@@ -46,6 +50,7 @@ export default function VinsParRegion() {
             <br/>
 
             {regions1.map(item => {
+                // DISPLAY REGION IMAGE AND REGION DESCRIPTION
                 if (item._id === regionID) {
                     return (
                         <Container style={{marginTop: "5%"}}>
@@ -58,9 +63,6 @@ export default function VinsParRegion() {
                                                 maxWidth: "40%",
                                                 fontSize: "15px",
                                                 textAlign: "left"
-                                            //   overflowWrap: "break-word",
-                                            //   overflowY: "scroll",
-                                            //   overflowX: "hidden"
 
                                             }}>
                                         {item.descrRegion}
@@ -71,6 +73,7 @@ export default function VinsParRegion() {
                 }
             })}
 
+            {/* DISPLAY ALL WINES AVAILABLE FOR THAT SPECIFIC REGION */}
             <Container style={{display: "flex", flexWrap: "wrap", marginTop: "50px"}}>
                 {vins.map(item => {
                     if (item.regionID === regionID) {

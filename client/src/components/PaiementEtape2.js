@@ -16,6 +16,7 @@ export default function PaiementEtape2() {
     const [vins, setVins] = useState([])
 
 
+    // Set Panier and Vins when page is loaded
     useEffect(() => {
       let isMounted = true;
   
@@ -31,6 +32,7 @@ export default function PaiementEtape2() {
       }, [])
 
 
+      // Function to display steps involved in the payment process
     const StepExampleOrdered = () => (
       <div style={{display: "flex", justifyContent: "flex-start"}}>
         <Step.Group ordered>
@@ -57,6 +59,7 @@ export default function PaiementEtape2() {
         </div>
       )
 
+      // Update Client's payment info in database
       const updateClient = async (e) => { 
         e.preventDefault()
   
@@ -76,7 +79,7 @@ export default function PaiementEtape2() {
         getClients()
      }
   
-      // Read
+      // Fetch updated client's info from database
       const getClients = async () => {
         const res = await axios.get('/api/clients')
         const data = res.data
@@ -84,14 +87,17 @@ export default function PaiementEtape2() {
         setClients(data)
       }
 
+      // Redirect to Step 3 of the payment process when "Suivant-Etape 3" button is clicked
       const paiementEtape3 = (e) => {
         updateClient(e)
         navigate(`/paiementEtape3/${clientID}/${sousTotal}`)
       }
 
+      // Redirect to Step 1 of the payment process when "Retour-Etape 1" button is clicked
       const paiementEtape1 = () => {
         navigate(`/paiementEtape1/${clientID}/${sousTotal}`)
       }
+
 
     return (
         <Container style={{margin: "20px 20px", width: "100vw"}}>
@@ -100,6 +106,7 @@ export default function PaiementEtape2() {
 
           <div style={{display: "flex", justifyContent: "center", marginTop: "5%"}}>
 
+            {/* FORM TO PROCESS STEP 2 OF PAYMENT */}
             <div style={{marginTop: "10px"}} className='jumbotron'>
                 <h1 style={{marginBottom: "20px"}}>Paiement</h1>
                 <div style={{textAlign: "left"}}>
@@ -155,6 +162,7 @@ export default function PaiementEtape2() {
 
             </div>
             
+            {/* DISPLAY SUMMARY OR CART, SUBTOTAL, TAX INFO AND TOTAL AMOUNT */}
             <div style={{marginLeft: "5vw"}} >
               <div style={{maxHeight: "50vh", overflowY: "auto"}}>
                 {paniers.map(panier => {

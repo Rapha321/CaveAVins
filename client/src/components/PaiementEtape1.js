@@ -11,9 +11,9 @@ export default function PaiementEtape1() {
   const [clients, setClients] = useState([]);
   const [paniers, setPaniers] = useState([]);
   const [vins, setVins] = useState([])
-  const [panierExist, setPanierExist] = useState(false)
 
 
+  // Set Panier and Vins when page is loaded
   useEffect(() => {
     let isMounted = true;
 
@@ -25,21 +25,16 @@ export default function PaiementEtape1() {
         .then(res => res.json())
         .then(data => { if (isMounted){ setVins(data) } })
 
-    // paniers.map(x => {if (isMounted && x.clientID === clientID) {
-    //     setPanierExist(true)
-    // }})
-
     return () => {isMounted = false};
   }, []) 
 
 
+  // Update Client's payment info in database
   const updateClient = async (e) => { 
       e.preventDefault()
 
-      const {prenom, nom, adresse, appartment, ville, province, codePostal} = e.target
+      const {adresse, appartment, ville, province, codePostal} = e.target
       await axios.post(`/api/clients/update/${clientID}`, {
-        prenom: prenom.value,
-        nom: nom.value,
         adresse: adresse.value,
         appartment: appartment.value,
         ville: ville.value,
@@ -56,7 +51,7 @@ export default function PaiementEtape1() {
       getClients()
    }
 
-    // Read
+    // Fetch updated client's info from database
     const getClients = async () => {
       const res = await axios.get('/api/clients')
       const data = res.data
@@ -64,6 +59,7 @@ export default function PaiementEtape1() {
       setClients(data)
     }
 
+    // Function to display steps involved in the payment process
     const StepExampleOrdered = () => (
       <div style={{display: "flex", justifyContent: "flex-start"}}>
         <Step.Group ordered>
@@ -90,21 +86,28 @@ export default function PaiementEtape1() {
       </div>
     )
 
+
+    // Redirect to Step 2 of the payment process
     const paiementEtape2 = (e) => {
       updateClient(e)
       navigate(`/paiementEtape2/${clientID}/${sousTotal}`)
     }
 
+    // Redirect to Cart when "Retour au panier" button is clicked
     const retourPanier = () => {
       navigate(`/panier/${clientID}`)
     }
 
+
+    
     return (
         <Container style={{margin: "20px 20px", width: "100vw"}}>
 
           <Header client={clientID}/>
           
           <div style={{display: "flex", justifyContent: "center", marginTop: "5%"}} >
+
+            {/* FORM TO PROCESS STEP 1 OF PAYMENT */}
             <div style={{marginTop: "10px"}} className='jumbotron'>
                 <h1 style={{marginBottom: "20px"}}>Paiement</h1>
                 <br />
@@ -134,6 +137,7 @@ export default function PaiementEtape1() {
 
             </div>
 
+            {/* DISPLAY SUMMARY OR CART, SUBTOTAL, TAX INFO AND TOTAL AMOUNT */}
             <div style={{marginLeft: "5vw"}}>
               <div style={{maxHeight: "50vh", overflowY: "auto"}}>
                 {paniers.map(panier => {

@@ -55,6 +55,7 @@ export default function AdminCommandes() {
                         console.log(err.response)
                     })
                 }
+                
             })
         })
         getCommandes()
@@ -67,6 +68,14 @@ export default function AdminCommandes() {
         setCommandes(data)
     }
 
+    // Function to make button disabled
+    const enRouteBtnStyle = (status) => {
+        if (status === "En route" || status === "Livré") {
+            return 'disabled'
+        } else {
+            return false
+        }
+    }
 
     return (
         <Container>  
@@ -98,14 +107,18 @@ export default function AdminCommandes() {
                                         <td width="80px">{x.prix}</td>
                                         <td width="200px">{commande.status}</td>
                                         <td>
-                                            <Button size="mini" color={commande.status === 'En préparation' ? 'blue' : 'grey'}
+                                            <Button disabled={enRouteBtnStyle(commande.status)}
+                                                    color="blue"
+                                                    size="mini" 
                                                     onClick={() => commandeEnRoute(commande._id, x.vinsID)} 
                                                     style={{marginLeft: "15px"}}>
                                                 En route
                                             </Button>
                                         </td>
                                         <td>
-                                            <Button size="mini" color={commande.status === 'Livré' ? 'grey' : 'green'} 
+                                            <Button disabled={commande.status === 'Livré' ? 'disabled' : false} 
+                                                    size="mini" 
+                                                    color="green"
                                                     style={{marginLeft: "15px"}} 
                                                     onClick={() => commandeLivrer(commande._id, x.vinsID)} >
                                                 Livré

@@ -15,7 +15,7 @@ Server side: NodeJs, Express, axios, fetch
 ### How to run the app
 In your terminal, navigate to `ProjetCaveAVins` folder.
 Inside `server` folder type ```npm install``` and then ```npm run server```. 
-Inside `client` folder type ```npm install``` and then ```npm start``` to to runs the app in the development mode.. 
+Inside `client` folder type ```npm install``` and then ```npm start``` to runs the app in the development mode.. 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Register as a user and then Signin.
@@ -24,5 +24,8 @@ To use the admin functions: sign in with email: admin@admin.com and password: "a
 Click here to access the deployed app: [Cave à Vins]()
 
 
-## Demo
-!["Demo koinFolio"](https://github.com/Rapha321/coinmagik/blob/master/blob/koinfolioDemo.gif)
+## Demo User
+<!-- !["Demo koinFolio"](https://github.com/Rapha321/coinmagik/blob/master/blob/koinfolioDemo.gif) -->
+
+
+## Demo Admin
