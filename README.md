@@ -26,7 +26,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Register as a user and then Signin.
 To use the admin functions: sign in with email: admin@admin.com and password: "admin"
 
-Click here to access the deployed app: [Cave à Vins]()
+<!-- Click here to access the deployed app: [Cave à Vins]() -->
 
 
 ### Demo User
