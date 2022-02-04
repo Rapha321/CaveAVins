@@ -30,8 +30,8 @@ Click here to access the deployed app: [Cave à Vins]()
 
 
 ### Demo User
-!["Demo koinFolio"](https://github.com/Rapha321/coinmagik/blob/master/blob/caveavinsClient.gif)
+!["Demo Cave a vins"](https://github.com/Rapha321/CaveAVins/blob/master/blob/caveavinsClient.gif)
 
 
 ### Demo Admin
-!["Demo koinFolio"](https://github.com/Rapha321/coinmagik/blob/master/blob/caveavinsAdmin.gif)
+!["Demo Cave a vins"](https://github.com/Rapha321/CaveAVins/blob/master/blob/caveavinsAdmin.gif)
