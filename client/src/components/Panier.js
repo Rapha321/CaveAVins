@@ -183,7 +183,7 @@ export default function Panier() {
             <hr style={{marginTop: "7%"}}/>
 
             <div style={{display: "flex"}}>
-                <div style={{width: "60vw", maxWidth: "60vw"}}>
+                <div style={{width: "55vw", maxWidth: "55vw"}}>
                     {afficherPanier()}
                 </div>
                 <div style={{display: "flex", flexDirection: "column", width: "25vw", maxWidth: "25vw"}}>
@@ -210,4 +210,3 @@ export default function Panier() {
         </Container>
     )
 }
-

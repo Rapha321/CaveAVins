@@ -1,16 +1,21 @@
 # Cave à Vins
-Cave à Vins is a Full Stack MERN E-Commerce Web application Specializing local wines. Cave à Vins display a wide collection of wines locally produced.
+Cave à Vins is a Full Stack MERN E-Commerce Web application Specializing local wines. Cave à Vins display a wide collection of wines locally produced wines.
 
 Coded with :heart: by [Raphael Albern](https://github.com/Rapha321)
 
 ## Stack
 Cave à Vins is built with the following stacks:
 #### FrontEnd:
-HTML, CSS, Javascript, React (Hooks: useRef, useState, useEffect, useNavigate, useParams, useLocation), semanticUI, MaterialUI, Bootstrap react
+* HTML 
+* CSS 
+* Javascript 
+* React (Hooks: useRef, useState, useEffect, useNavigate, useParams, useLocation) 
+* SemanticUI, MaterialUI, Bootstrap react
 
 #### BackEnd:
-MongoDB for Database.
-Server side: NodeJs, Express, axios, fetch
+* MongoDB Database
+* Server side: NodeJs, Express 
+* Axios and fetch 
 
 ### How to run the app
 In your terminal, navigate to `ProjetCaveAVins` folder.
@@ -24,8 +29,9 @@ To use the admin functions: sign in with email: admin@admin.com and password: "a
 Click here to access the deployed app: [Cave à Vins]()
 
 
-## Demo User
-<!-- !["Demo koinFolio"](https://github.com/Rapha321/coinmagik/blob/master/blob/koinfolioDemo.gif) -->
+### Demo User
+!["Demo koinFolio"](https://github.com/Rapha321/coinmagik/blob/master/blob/caveavinsClient.gif)
 
 
-## Demo Admin
+### Demo Admin
+!["Demo koinFolio"](https://github.com/Rapha321/coinmagik/blob/master/blob/caveavinsAdmin.gif)
