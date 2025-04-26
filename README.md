@@ -1,7 +1,7 @@
 # Cave à Vins
 Cave à Vins is a Full Stack MERN E-Commerce Web application Specializing local wines. Cave à Vins display a wide collection of wines locally produced wines.
 
-Coded with :heart: by [Raphael Albern](https://github.com/Rapha321)
+Coded with :heart: by [R. J.](https://github.com/Rapha321)
 
 ## Stack
 Cave à Vins is built with the following stacks:

@@ -8,7 +8,7 @@
     "server": "nodemon index.js",
     "start": "node index.js"
   },
-  "author": "Raphael Albern",
+  "author": "R. J.",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.1",
